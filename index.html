@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>រចនាម៉ូតវាំងនន ប៉ោយប៉ែត | Poipet Modern Curtain Store</title>
+  <!-- Favicon / App Icon -->
+  <link rel="icon" type="image/x-icon" href="icon.png.ico">
+  <link rel="shortcut icon" href="icon.png.ico">
+  <link rel="apple-touch-icon" href="icon.png.ico">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            khmer: ['"Kantumruy Pro"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+          },
+          colors: {
+            brand: {
+              cream: '#FDFBF7',
+              sand: '#F4ECE1',
+              tan: '#D8C3A5',
+              gold: '#C5A059',
+              goldHover: '#B38E46',
+              dark: '#1C1917',
+              charcoal: '#292524',
+              muted: '#78716C'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Kantumruy Pro', sans-serif;
+      background-color: #FAF7F2;
+      color: #292524;
+      scroll-behavior: smooth;
+    }
+    .gold-badge {
+      background: linear-gradient(135deg, #DFBE82 0%, #C5A059 100%);
+    }
+    .gold-btn {
+      background: linear-gradient(135deg, #C5A059 0%, #A9833D 100%);
+    }
+    /* Brand Logo & Name Styling (ចរនាប្រណិត & Shimmer Effect) */
+    .brand-glow {
+      box-shadow: 0 4px 20px -2px rgba(197, 160, 89, 0.35);
+    }
+    .brand-name-luxury {
+      background: linear-gradient(135deg, #2A2521 0%, #C5A059 50%, #856424 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 10px rgba(197, 160, 89, 0.15);
+      letter-spacing: -0.02em;
+    }
+    .brand-logo-ring {
+      background: linear-gradient(135deg, #FAF3E0 0%, #C5A059 50%, #9B7832 100%);
+      padding: 2.5px;
+    }
+    .brand-logo-ring:hover {
+      box-shadow: 0 0 20px rgba(197, 160, 89, 0.55);
+      transform: scale(1.05);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #D8C3A5;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="selection:bg-brand-gold selection:text-white">
+
+  <!-- TOP ANNOUNCEMENT BAR (ដូចរូបគំរូ E-commerce) -->
+  <div class="bg-brand-dark text-white text-xs border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-4 text-gray-300">
+        <span class="flex items-center gap-1.5 text-brand-gold font-medium">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          <span id="dynamicAnnouncement">ប្រូម៉ូសិនពិសេសរដូវកាលថ្មី ចុះតម្លៃរហូតដល់ ២៥% សម្រាប់ក្រុងប៉ោយប៉ែត</span>
+        </span>
+        <span class="hidden md:inline text-white/30">|</span>
+        <span class="hidden md:flex items-center gap-1">
+          <i data-lucide="ruler" class="w-3.5 h-3.5 text-brand-gold"></i>
+          វាស់វែង & ពិគ្រោះយោបល់ឥតគិតថ្លៃដល់ទីតាំង
+        </span>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs font-medium">
+        <a href="tel:092120128" class="flex items-center gap-1.5 text-gray-300 hover:text-white transition">
+          <i data-lucide="phone-call" class="w-3.5 h-3.5 text-brand-gold"></i>
+          <span class="dynamic-store-phone">092 120 128 / 010 900 934 / 071 9838 900</span>
+        </a>
+        <a href="https://t.me/Samon128" target="_blank" class="dynamic-telegram-link flex items-center gap-1.5 text-[#29b6f6] hover:underline font-semibold">
+          <i data-lucide="send" class="w-3.5 h-3.5"></i>
+          <span class="dynamic-telegram-text">@Samon128</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN HEADER / NAVBAR -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-brand-sand shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Logo & Decorated Name (Logo ICO + Luxury Design) -->
+        <a href="#" class="flex items-center gap-3.5 group">
+          <!-- Logo with Luxury Golden Ring Frame -->
+          <div class="relative">
+            <div class="brand-logo-ring rounded-2xl transition-all duration-300 shadow-md">
+              <img src="icon.png.ico" alt="រចនាម៉ូតវាំងនន ប៉ោយប៉ែត Logo" class="w-12 h-12 rounded-[14px] object-cover bg-white">
+            </div>
+            <!-- Small Gold Star Badge -->
+            <div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-brand-gold text-brand-dark flex items-center justify-center border-2 border-white shadow-xs">
+              <i data-lucide="sparkles" class="w-2.5 h-2.5"></i>
+            </div>
+          </div>
+
+          <!-- Decorated Brand Name -->
+          <div class="space-y-0.5">
+            <div class="flex items-center gap-1.5">
+              <span class="text-xl sm:text-2xl font-black tracking-tight brand-name-luxury block dynamic-store-title">
+                រចនាម៉ូតវាំងនន ប៉ោយប៉ែត
+              </span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="h-[1.5px] w-5 bg-brand-gold"></span>
+              <span class="text-[10px] sm:text-[11px] tracking-[0.2em] uppercase text-brand-gold font-bold">POIPET CURTAIN DESIGN</span>
+              <span class="h-[1.5px] w-5 bg-brand-gold"></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-7 text-[15px] font-medium text-brand-charcoal">
+          <a href="#home" class="hover:text-brand-gold transition py-1">ទំព័រដើម</a>
+          <a href="#models" class="hover:text-brand-gold transition py-1">ម៉ូត & ពណ៌ក្រណាត់</a>
+          <a href="#promotions" class="hover:text-brand-gold transition py-1 flex items-center gap-1.5">
+            <span>ប្រូម៉ូសិន</span>
+            <span class="px-1.5 py-0.5 rounded-full text-[10px] bg-rose-500 text-white font-bold">HOT</span>
+          </a>
+          <a href="#calculator" class="hover:text-brand-gold transition py-1">គណនាតម្លៃ</a>
+          <a href="#orderOnline" class="hover:text-brand-gold transition py-1 text-brand-gold font-bold">កម្មង់អនឡាញ</a>
+          <a href="#contact" class="hover:text-brand-gold transition py-1">ទីតាំង & ទំនាក់ទំនង</a>
+        </nav>
+
+        <!-- Right Action Buttons -->
+        <div class="flex items-center gap-3">
+          <!-- Link to Admin Dashboard -->
+          <a href="admin.html" class="p-2.5 rounded-full bg-brand-sand/60 hover:bg-brand-sand text-brand-dark transition" title="ផ្ទាំងគ្រប់គ្រងម្ចាស់ហាង (Admin)">
+            <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+          </a>
+
+          <!-- Cart Toggle Button -->
+          <button onclick="toggleCartDrawer()" class="relative p-2.5 rounded-full bg-brand-sand/60 hover:bg-brand-sand text-brand-dark transition">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+            <span id="cartCountBadge" class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-rose-600 text-white text-[11px] font-bold flex items-center justify-center">0</span>
+          </button>
+
+          <!-- Telegram Direct Button -->
+          <a href="https://t.me/Samon128" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#0088cc]/10 border border-[#0088cc]/30 text-[#0088cc] hover:bg-[#0088cc] hover:text-white font-medium text-sm transition">
+            <i data-lucide="send" class="w-4 h-4"></i>
+            <span>ឆាត Telegram</span>
+          </a>
+
+          <!-- Mobile Menu Trigger -->
+          <button id="mobileNavBtn" class="lg:hidden p-2 text-brand-dark">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileNavMenu" class="hidden lg:hidden bg-white border-b border-brand-sand px-4 py-4 space-y-3">
+      <a href="#home" class="block text-brand-dark hover:text-brand-gold font-medium py-1">ទំព័រដើម</a>
+      <a href="#models" class="block text-brand-dark hover:text-brand-gold font-medium py-1">ម៉ូតវាំងនន & ពណ៌ក្រណាត់</a>
+      <a href="#promotions" class="block text-rose-600 font-semibold py-1">🔥 ប្រូម៉ូសិនពិសេស</a>
+      <a href="#calculator" class="block text-brand-dark hover:text-brand-gold font-medium py-1">គណនាតម្លៃវាំងនន</a>
+      <a href="#orderOnline" class="block text-brand-gold font-bold py-1">កម្មង់តាមអនឡាញ</a>
+      <a href="#contact" class="block text-brand-dark hover:text-brand-gold font-medium py-1">ទីតាំង & ទំនាក់ទំនង</a>
+      <div class="pt-3 border-t border-brand-sand flex gap-2">
+        <a href="https://t.me/Samon128" target="_blank" class="flex-1 py-2 rounded-xl bg-[#0088cc] text-white text-center text-sm font-semibold flex items-center justify-center gap-1.5">
+          <i data-lucide="send" class="w-4 h-4"></i> Telegram
+        </a>
+        <a href="tel:092120128" class="flex-1 py-2 rounded-xl bg-brand-dark text-white text-center text-sm font-semibold flex items-center justify-center gap-1.5">
+          <i data-lucide="phone" class="w-4 h-4"></i> 092 120 128
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION (តាម Style ក្នុងរូបភាពគំរូ E-commerce Banner) -->
+  <section id="home" class="relative bg-brand-cream border-b border-brand-sand overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left Banner Description -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-sand border border-brand-tan/60 text-brand-charcoal text-xs font-semibold">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>រចនាម៉ូតវាំងនន ប៉ោយប៉ែត ឈានមុខគេលើគុណភាព និងសេវាកម្ម</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-brand-dark leading-[1.3] sm:leading-[1.2]">
+            <span id="dynamicHeroHeading">វាំងននប្រណិត</span> <br>
+            <span id="dynamicHeroHighlight" class="text-brand-gold">រចនាតាមទំហំគេហដ្ឋាន</span> របស់អ្នក
+          </h1>
+
+          <p id="dynamicHeroDesc" class="text-base sm:text-lg text-brand-muted max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
+            សេវាកម្មកាត់ដេរ និងដំឡើងវាំងននទាន់សម័យ សាច់ក្រណាត់ប្រណិត ការពារកម្ដៅថ្ងៃ 100% ផ្ដល់ផាសុកភាព និងលើកសម្រស់គេហដ្ឋាន វីឡា ខុនដូ និងការិយាល័យ។
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#models" class="px-8 py-4 rounded-xl gold-btn text-white font-bold text-sm shadow-md hover:brightness-105 transition flex items-center gap-2">
+              <i data-lucide="grid" class="w-4 h-4"></i>
+              <span>មើលម៉ូត និងពណ៌ក្រណាត់</span>
+            </a>
+            <a href="#calculator" class="px-7 py-4 rounded-xl bg-white border border-brand-tan text-brand-dark font-semibold text-sm hover:bg-brand-sand/60 transition flex items-center gap-2 shadow-xs">
+              <i data-lucide="calculator" class="w-4 h-4 text-brand-gold"></i>
+              <span>គណនាតម្លៃភ្លាមៗ</span>
+            </a>
+          </div>
+
+          <!-- Feature badges (ដូចក្នុងរូបភាពម៉ូដ) -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-brand-sand">
+            <div class="text-center lg:text-left">
+              <span class="block text-lg font-bold text-brand-dark">100%</span>
+              <span class="text-xs text-brand-muted">ក្រណាត់គុណភាពខ្ពស់</span>
+            </div>
+            <div class="text-center lg:text-left">
+              <span class="block text-lg font-bold text-brand-dark">Free</span>
+              <span class="text-xs text-brand-muted">វាស់វែងដល់ទីកន្លែង</span>
+            </div>
+            <div class="text-center lg:text-left">
+              <span class="block text-lg font-bold text-brand-dark">ជាងជំនាញ</span>
+              <span class="text-xs text-brand-muted">ដំឡើងស្អាតឥតខ្ចោះ</span>
+            </div>
+            <div class="text-center lg:text-left">
+              <span class="block text-lg font-bold text-brand-dark">ការធានា</span>
+              <span class="text-xs text-brand-muted">គុណភាពលើកគ្រឿង</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Hero Mockup Image -->
+        <div class="lg:col-span-5">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+              <img id="dynamicHeroImage" src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1000&auto=format&fit=crop" 
+                   alt="Modern Luxury Curtains" 
+                   class="w-full h-80 sm:h-[420px] object-cover hover:scale-105 transition-transform duration-700">
+              <div class="p-4 bg-white flex items-center justify-between border-t border-brand-sand">
+                <div>
+                  <h4 class="text-sm font-bold text-brand-dark">ម៉ូតវាំងនន ២ ជាន់ Luxury Ripple Fold</h4>
+                  <p class="text-xs text-brand-gold font-medium">ពេញនិយមបំផុតសម្រាប់វីឡានៅប៉ោយប៉ែត</p>
+                </div>
+                <a href="#models" class="px-3 py-1.5 rounded-lg bg-brand-sand text-brand-dark text-xs font-semibold hover:bg-brand-tan/50 transition">
+                  មើលលម្អិត
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR (ដូច icon bar ខាងក្រោមក្នុងរូបភាពគំរូ) -->
+  <section class="bg-white border-b border-brand-sand py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-brand-sand/70 text-brand-gold flex items-center justify-center shrink-0">
+            <i data-lucide="truck" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-brand-dark">ដឹកជញ្ជូនរហ័ស</h4>
+            <p class="text-xs text-brand-muted">ទូទាំងក្រុងប៉ោយប៉ែត & បន្ទាយមានជ័យ</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-brand-sand/70 text-brand-gold flex items-center justify-center shrink-0">
+            <i data-lucide="ruler-horizontal" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-brand-dark">កាត់តាមទំហំជាក់ស្តែង</h4>
+            <p class="text-xs text-brand-muted">វាស់វែង និងកាត់ដេរយ៉ាងផ្ចិតផ្ចង់</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-brand-sand/70 text-brand-gold flex items-center justify-center shrink-0">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-brand-dark">ធានាគុណភាពក្រណាត់</h4>
+            <p class="text-xs text-brand-muted">ក្រណាត់ក្រាស់ មិនស្លេកពណ៌</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-brand-sand/70 text-brand-gold flex items-center justify-center shrink-0">
+            <i data-lucide="headset" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-brand-dark">ពិគ្រោះយោបល់ 24/7</h4>
+            <p class="text-xs text-brand-muted">តាម Telegram និងទូរស័ព្ទ</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1. មើលតម្លៃ និងប្រូម៉ូសិន (PROMOTIONS SECTION) -->
+  <section id="promotions" class="py-16 bg-gradient-to-b from-brand-sand/40 to-brand-cream border-b border-brand-sand">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 font-bold text-xs uppercase tracking-wider mb-2">
+            <i data-lucide="flame" class="w-3.5 h-3.5"></i> ប្រូម៉ូសិនពិសេសប្រចាំខែ
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark">តម្លៃពិសេស និងកញ្ចប់ប្រូម៉ូសិន</h2>
+          <p class="text-sm text-brand-muted mt-1">កុម្ម៉ង់ឥឡូវនេះដើម្បីទទួលបានការបញ្ចុះតម្លៃ និងកាដូបន្ថែម</p>
+        </div>
+        <div class="mt-4 md:mt-0">
+          <a href="https://t.me/Samon128?text=សួស្តី! ខ្ញុំចង់សាកសួរអំពីប្រូម៉ូសិនវាំងនន" target="_blank" class="text-sm font-semibold text-brand-gold hover:text-brand-goldHover flex items-center gap-1">
+            <span>សាកសួរប្រូម៉ូសិនតាម Telegram</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Promo Card 1 -->
+        <div class="rounded-2xl bg-white border border-brand-tan/50 p-6 shadow-sm hover:shadow-md transition relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-rose-500 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl" id="dynamicPromoBadge">
+            ចុះ -20%
+          </div>
+          <span class="text-xs font-semibold text-brand-gold uppercase">កញ្ចប់គេហដ្ឋានថ្មី</span>
+          <h3 class="text-lg font-bold text-brand-dark mt-1">កញ្ចប់ផ្ទះវីឡា & ផ្ទះល្វែង</h3>
+          <p id="dynamicPromoDetails" class="text-xs text-brand-muted mt-2 leading-relaxed">កាត់ដេរវាំងននគ្រប់បន្ទប់ (ចាប់ពី ៥ បង្អួចឡើងទៅ) ទទួលបានការបញ្ចុះតម្លៃ ២០% ភ្លាមៗ។</p>
+          <div class="mt-4 pt-4 border-t border-brand-sand flex items-baseline justify-between">
+            <div>
+              <span class="text-xs text-gray-400 line-through">$22/m²</span>
+              <span class="text-xl font-bold text-rose-600 ml-1.5">$17.50<span class="text-xs font-normal text-brand-muted">/m²</span></span>
+            </div>
+            <button onclick="applyPromo('កញ្ចប់ផ្ទះវីឡា', 17.5)" class="px-3.5 py-1.5 rounded-lg bg-brand-sand text-brand-dark text-xs font-semibold hover:bg-brand-gold hover:text-white transition">
+              ជ្រើសរើសកញ្ចប់
+            </button>
+          </div>
+        </div>
+
+        <!-- Promo Card 2 -->
+        <div class="rounded-2xl bg-white border-2 border-brand-gold p-6 shadow-md hover:shadow-lg transition relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-brand-gold text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl">
+            ពេញនិយមបំផុត
+          </div>
+          <span class="text-xs font-semibold text-brand-gold uppercase">ប្រូម៉ូសិន Smart Motor</span>
+          <h3 class="text-lg font-bold text-brand-dark mt-1">ថែម Free ឧបករណ៍ Smart Hub</h3>
+          <p class="text-xs text-brand-muted mt-2 leading-relaxed">ដំឡើងវាំងននម៉ូទ័រស្វ័យប្រវត្ត ៣ បង្អួចឡើងទៅ ថែមជូន Smart Gateway បញ្ជាតាមទូរស័ព្ទតម្លៃ $45 ឥតគិតថ្លៃ។</p>
+          <div class="mt-4 pt-4 border-t border-brand-sand flex items-baseline justify-between">
+            <div>
+              <span class="text-xs text-gray-400 line-through">$35/m</span>
+              <span class="text-xl font-bold text-brand-gold ml-1.5">$28.00<span class="text-xs font-normal text-brand-muted">/m</span></span>
+            </div>
+            <button onclick="applyPromo('វាំងននស្វ័យប្រវត្ត Smart', 28)" class="px-3.5 py-1.5 rounded-lg gold-btn text-white text-xs font-semibold shadow-xs hover:brightness-105 transition">
+              ជ្រើសរើសកញ្ចប់
+            </button>
+          </div>
+        </div>
+
+        <!-- Promo Card 3 -->
+        <div class="rounded-2xl bg-white border border-brand-tan/50 p-6 shadow-sm hover:shadow-md transition relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-emerald-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl">
+            FREE 100%
+          </div>
+          <span class="text-xs font-semibold text-brand-gold uppercase">សេវាកម្មពិសេស</span>
+          <h3 class="text-lg font-bold text-brand-dark mt-1">Free ដំឡើង & កាត់ដេរ</h3>
+          <p class="text-xs text-brand-muted mt-2 leading-relaxed">រាល់ការកុម្ម៉ង់នៅក្នុងក្រុងប៉ោយប៉ែត មិនគិតថ្លៃដឹកជញ្ជូន មិនគិតថ្លៃវាស់វែង និងដំឡើងជូនដល់ទីកន្លែង។</p>
+          <div class="mt-4 pt-4 border-t border-brand-sand flex items-center justify-between">
+            <span class="text-xs font-medium text-emerald-600 flex items-center gap-1">
+              <i data-lucide="check" class="w-4 h-4"></i> សន្សំបានរហូតដល់ $50+
+            </span>
+            <a href="https://t.me/Samon128" target="_blank" class="px-3.5 py-1.5 rounded-lg bg-brand-sand text-brand-dark text-xs font-semibold hover:bg-brand-tan transition">
+              ទាក់ទងឥឡូវនេះ
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. មើលម៉ូតវាំងនន និងពណ៌ក្រណាត់ (MODELS & FABRICS) -->
+  <section id="models" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs uppercase tracking-wider text-brand-gold font-bold">កាតាឡុកផលិតផល</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-brand-dark mt-1">ម៉ូតវាំងនន និងពណ៌ក្រណាត់</h2>
+        <p class="text-sm text-brand-muted mt-2">ជ្រើសរើសម៉ូត និងពណ៌ក្រណាត់ដែលអ្នកចូលចិត្តដើម្បីមើលរូបភាពជាក់ស្តែង និងកុម្ម៉ង់</p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap justify-center gap-2 mb-10" id="curtainCategoryTabs">
+        <!-- Rendered dynamically from Admin categories -->
+      </div>
+
+      <!-- Products Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="productGrid">
+        <!-- Products Rendered dynamically from Admin products state -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. គណនាតម្លៃវាំងនន (PRICE CALCULATOR SECTION) -->
+  <section id="calculator" class="py-20 bg-brand-cream border-y border-brand-sand">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs uppercase tracking-wider text-brand-gold font-bold">ឧបករណ៍ឆ្លាតវៃ</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-brand-dark mt-1">គណនាតម្លៃវាំងននដោយខ្លួនឯង</h2>
+        <p class="text-sm text-brand-muted mt-2">បញ្ចូលទំហំ និងជ្រើសរើសម៉ូតដើម្បីដឹងតម្លៃប៉ាន់ស្មានភ្លាមៗ មុនពេលជាងចុះវាស់ជាក់ស្តែង</p>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-brand-tan/50 shadow-xl p-6 sm:p-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Inputs Column -->
+          <div class="lg:col-span-7 space-y-5">
+            <div>
+              <label class="block text-xs font-bold text-brand-charcoal uppercase tracking-wider mb-2">ម៉ូតវាំងននដែលអ្នកចង់បាន</label>
+              <select id="calcModelSelect" onchange="runCalculator()" class="w-full bg-brand-cream border border-brand-sand rounded-xl px-4 py-3.5 text-sm font-medium text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-gold">
+                <option value="18" data-name="វាំងនន ២ ជាន់ Blackout & Sheer">វាំងនន ២ ជាន់ Blackout & Sheer (~$18/m²)</option>
+                <option value="28" data-name="វាំងននស្វ័យប្រវត្ត Smart Motor">វាំងននស្វ័យប្រវត្ត Smart Motor (~$28/m)</option>
+                <option value="15" data-name="វាំងននរមូល Roller & Zebra Blinds">វាំងននរមូល Roller & Zebra Blinds (~$15/m²)</option>
+                <option value="22" data-name="វាំងននរលកស្មើ Ripple Fold (S-Curve)">វាំងននរលកស្មើ Ripple Fold (S-Curve) (~$22/m²)</option>
+                <option value="14" data-name="វាំងននបន្ទះបញ្ឈរ Vertical Blinds">វាំងននបន្ទះបញ្ឈរ Vertical Blinds (~$14/m²)</option>
+                <option value="19" data-name="វាំងននបត់រ៉ូម៉ាំង Roman Shades">វាំងននបត់រ៉ូម៉ាំង Roman Shades (~$19/m²)</option>
+              </select>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-brand-charcoal uppercase tracking-wider mb-2">ទទឹង (ម៉ែត្រ)</label>
+                <div class="relative">
+                  <input type="number" id="calcWidth" value="2.5" step="0.1" min="0.5" oninput="runCalculator()" class="w-full bg-brand-cream border border-brand-sand rounded-xl px-4 py-3.5 text-sm font-semibold text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-gold">
+                  <span class="absolute right-4 top-3.5 text-xs text-brand-muted font-bold">m</span>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-brand-charcoal uppercase tracking-wider mb-2">កម្ពស់ (ម៉ែត្រ)</label>
+                <div class="relative">
+                  <input type="number" id="calcHeight" value="2.6" step="0.1" min="0.5" oninput="runCalculator()" class="w-full bg-brand-cream border border-brand-sand rounded-xl px-4 py-3.5 text-sm font-semibold text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-gold">
+                  <span class="absolute right-4 top-3.5 text-xs text-brand-muted font-bold">m</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-charcoal uppercase tracking-wider mb-2">ចំនួនបង្អួច (ឈុត)</label>
+              <input type="number" id="calcQty" value="1" min="1" oninput="runCalculator()" class="w-full bg-brand-cream border border-brand-sand rounded-xl px-4 py-3.5 text-sm font-semibold text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-gold">
+            </div>
+
+            <div class="p-4 rounded-xl bg-brand-sand/50 border border-brand-tan/40 flex items-start gap-3">
+              <i data-lucide="info" class="w-5 h-5 text-brand-gold shrink-0 mt-0.5"></i>
+              <p class="text-xs text-brand-charcoal leading-relaxed">
+                តម្លៃនេះគិតជាមធ្យមរួមបញ្ចូលទាំង <b>ក្រណាត់ + សេវាកាត់ដេរ + គ្រឿងបន្លាស់រ៉ៃដំឡើង</b>។ ជាងជំនាញនឹងចុះវាស់ជាក់ស្តែងនៅប៉ោយប៉ែតដើម្បីធានាទំហំសុក្រឹត 100%។
+              </p>
+            </div>
+          </div>
+
+          <!-- Total Calculation Column -->
+          <div class="lg:col-span-5 bg-brand-dark text-white rounded-2xl p-6 sm:p-8 flex flex-col justify-between text-center space-y-6">
+            <div>
+              <span class="text-xs uppercase tracking-widest text-brand-gold font-bold block mb-2">តម្លៃប៉ាន់ស្មានសរុប</span>
+              <div class="text-4xl sm:text-5xl font-extrabold text-brand-gold">
+                $<span id="calcTotalDisplay">117.00</span>
+              </div>
+              <div class="mt-3 text-xs text-gray-300 space-y-1">
+                <p>ទំហំសរុប៖ <span id="calcAreaDisplay" class="font-bold text-white">6.50</span> ម៉ែត្រការ៉េ</p>
+                <p>ចំនួន៖ <span id="calcQtyDisplay" class="font-bold text-white">1</span> បង្អួច</p>
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <button onclick="addCalculatedToCart()" class="w-full py-3.5 px-6 rounded-xl gold-btn text-white font-bold text-sm shadow-md hover:brightness-105 transition flex items-center justify-center gap-2">
+                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                <span>ដាក់ចូលកន្ត្រកទិញ (Add to Cart)</span>
+              </button>
+
+              <a id="calcTelegramDirectBtn" href="https://t.me/Samon128" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-[#0088cc] hover:bg-[#0077b5] text-white font-bold text-sm transition flex items-center justify-center gap-2">
+                <i data-lucide="send" class="w-4 h-4"></i>
+                <span>ផ្ញើទំហំទៅ Telegram របស់ហាង</span>
+              </a>
+            </div>
+
+            <p class="text-[11px] text-gray-400">
+              ✓ Free វាស់វែងផ្ទាល់ដល់ទីកន្លែងក្នុងក្រុងប៉ោយប៉ែត
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. កម្មង់តាមអនឡាញ (ONLINE ORDER & CHECKOUT SECTION) -->
+  <section id="orderOnline" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs uppercase tracking-wider text-brand-gold font-bold">កុម្ម៉ង់ទាន់ចិត្ត</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-brand-dark mt-1">កម្មង់តាមអនឡាញ (Online Order)</h2>
+        <p class="text-sm text-brand-muted mt-2">លោកអ្នកអាចបំពេញព័ត៌មានខាងក្រោមដើម្បីកុម្ម៉ង់ ឬកក់ជាងចុះទៅវាស់វែងដល់ទីកន្លែង</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        <!-- Cart Summary Box -->
+        <div class="lg:col-span-5 bg-brand-cream border border-brand-sand rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-4 border-b border-brand-sand">
+              <h3 class="text-base font-bold text-brand-dark flex items-center gap-2">
+                <i data-lucide="shopping-bag" class="w-5 h-5 text-brand-gold"></i>
+                <span>ទំនិញដែលបានជ្រើសរើស</span>
+              </h3>
+              <span id="orderItemCount" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-brand-sand text-brand-dark">0 មុខ</span>
+            </div>
+
+            <!-- Cart Items List Container -->
+            <div id="cartItemsList" class="divide-y divide-brand-sand max-h-72 overflow-y-auto custom-scrollbar my-4">
+              <!-- Empty state default -->
+              <div id="emptyCartNotice" class="py-8 text-center text-brand-muted text-xs">
+                <i data-lucide="package-open" class="w-8 h-8 mx-auto text-brand-tan mb-2"></i>
+                មិនទាន់មានទំនិញក្នុងកន្ត្រកនៅឡើយទេ។<br>សូមចុច "កុម្ម៉ង់ឥឡូវ" ឬ "គណនាតម្លៃ" ដើម្បីបន្ថែម។
+              </div>
+            </div>
+          </div>
+
+          <!-- Price Summary breakdown -->
+          <div class="pt-4 border-t border-brand-sand space-y-2">
+            <div class="flex justify-between text-xs text-brand-muted">
+              <span>សរុបតម្លៃទំនិញ</span>
+              <span id="cartSubtotal" class="font-semibold text-brand-dark">$0.00</span>
+            </div>
+            <div class="flex justify-between text-xs text-brand-muted">
+              <span>សេវាវាស់វែង & ដំឡើង (ប៉ោយប៉ែត)</span>
+              <span class="font-bold text-emerald-600">ឥតគិតថ្លៃ (Free)</span>
+            </div>
+            <div class="flex justify-between text-sm font-bold text-brand-dark pt-2 border-t border-brand-sand">
+              <span>ទឹកប្រាក់សរុប</span>
+              <span id="cartGrandTotal" class="text-lg text-brand-gold">$0.00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkout Information Form -->
+        <div class="lg:col-span-7 bg-white border border-brand-tan/50 rounded-3xl p-6 sm:p-8 shadow-sm">
+          <h3 class="text-lg font-bold text-brand-dark mb-4 flex items-center gap-2">
+            <i data-lucide="clipboard-check" class="w-5 h-5 text-brand-gold"></i>
+            <span>ព័ត៌មានអតិថិជន & ទីតាំងនៅប៉ោយប៉ែត</span>
+          </h3>
+
+          <form id="onlineOrderForm" onsubmit="processOnlineOrder(event)" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-brand-charcoal mb-1.5">ឈ្មោះអតិថិជន *</label>
+                <input type="text" id="orderCustName" required placeholder="ឧ. លោក សុខា" class="w-full bg-brand-cream border border-brand-sand rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-brand-charcoal mb-1.5">លេខទូរស័ព្ទ / Telegram *</label>
+                <input type="tel" id="orderCustPhone" required placeholder="ឧ. 092 120 128" class="w-full bg-brand-cream border border-brand-sand rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-charcoal mb-1.5">ទីតាំងនៅក្រុងប៉ោយប៉ែត (ភូមិ / សង្កាត់ / បុរី / ផ្ទះលេខ) *</label>
+              <input type="text" id="orderCustAddress" required placeholder="ឧ. ផ្ទះលេខ #12 បុរីសានហូ, សង្កាត់ប៉ោយប៉ែត" class="w-full bg-brand-cream border border-brand-sand rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-charcoal mb-1.5">កំណត់សម្គាល់បន្ថែម ឬម៉ោងដែលចង់ឱ្យជាងចុះវាស់</label>
+              <textarea id="orderCustNotes" rows="2" placeholder="ឧ. ចង់បានពណ៌ប្រផេះក្រម៉ៅ, ស្រួលជាងចុះមកនៅម៉ោង 2 រសៀល..." class="w-full bg-brand-cream border border-brand-sand rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold"></textarea>
+            </div>
+
+            <!-- Submit Order Via Telegram -->
+            <button type="submit" class="w-full py-4 rounded-xl gold-btn text-white font-bold text-sm shadow-md hover:brightness-105 transition flex items-center justify-center gap-2">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              <span>បញ្ជាក់ការកុម្ម៉ង់ និងផ្ញើទៅ Telegram របស់ហាង</span>
+            </button>
+          </form>
+
+          <!-- Order Success Notice -->
+          <div id="orderSuccessNotice" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs text-center">
+            🎉 <b>ការកុម្ម៉ង់បានជោគជ័យ!</b> ប្រព័ន្ធបានបើកផ្ញើព័ត៌មានទៅកាន់ Telegram របស់ហាងរួចរាល់ហើយ។
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. ទីតាំង & ទំនាក់ទំនងតាម TELEGRAM (CONTACT & MAP) -->
+  <section id="contact" class="py-20 bg-brand-cream border-t border-brand-sand">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Telegram Card -->
+        <div class="lg:col-span-6 bg-white border border-brand-tan/50 rounded-3xl p-8 shadow-md">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0088cc]/10 text-[#0088cc] text-xs font-bold mb-4">
+            <i data-lucide="send" class="w-3.5 h-3.5"></i> ឆាតផ្ទាល់ជាមួយម្ចាស់ហាង
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark">ទាក់ទងតាម Telegram ភ្លាមៗ</h2>
+          <p class="text-xs sm:text-sm text-brand-muted mt-2 leading-relaxed">
+            លោកអ្នកអាចផ្ញើរូបភាពបង្អួច ប្លង់ផ្ទះ ឬសាកសួរតម្លៃម៉ូតវាំងននផ្សេងៗបានគ្រប់ពេល។ យើងខ្ញុំមានបុគ្គលិករង់ចាំឆ្លើយតបយ៉ាងរហ័ស 24/7។
+          </p>
+
+          <div class="mt-6 space-y-3">
+            <div class="flex items-center gap-3 p-3.5 rounded-xl bg-brand-cream border border-brand-sand">
+              <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                <i data-lucide="phone-call" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-brand-dark">លេខទូរស័ព្ទទាក់ទងផ្ទាល់</h4>
+                <p class="text-xs text-brand-gold font-bold">092 120 128 / 010 900 934 / 071 9838 900</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 p-3.5 rounded-xl bg-brand-cream border border-brand-sand">
+              <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
+                <i data-lucide="send" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-brand-dark">Telegram ម្ចាស់ហាង</h4>
+                <p class="text-xs text-[#0088cc] font-bold"><a href="https://t.me/Samon128" target="_blank" class="hover:underline">@Samon128</a></p>
+              </div>
+            </div>
+
+            <!-- Multi Locations Container (ទីតាំងហាងជាក់ស្តែង & Google Maps Link) -->
+            <div id="dynamicLocationsContainer" class="space-y-3">
+              <!-- Default Branch 1 -->
+              <div class="flex items-start justify-between gap-3 p-3.5 rounded-xl bg-brand-cream border border-brand-sand">
+                <div class="flex items-start gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center shrink-0 mt-0.5">
+                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-bold text-brand-dark">ទីតាំងហាងជាក់ស្តែង (សាខាទី ១)</h4>
+                    <p class="text-[11px] text-brand-muted">ក្រុងប៉ោយប៉ែត, ខេត្តបន្ទាយមានជ័យ (សេវាវាស់វែងដល់ទីកន្លែងឥតគិតថ្លៃ)</p>
+                  </div>
+                </div>
+                <a href="https://maps.google.com/?q=Poipet" target="_blank" class="shrink-0 px-2.5 py-1.5 rounded-lg bg-white border border-brand-tan/50 hover:bg-brand-sand text-brand-dark text-[11px] font-bold transition flex items-center gap-1 shadow-xs">
+                  <i data-lucide="navigation" class="w-3.5 h-3.5 text-brand-gold"></i>
+                  <span>បើកមើលផែនទី</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href="https://t.me/Samon128" target="_blank" class="flex-1 py-3.5 px-6 rounded-xl bg-[#0088cc] hover:bg-[#0077b5] text-white text-xs sm:text-sm font-bold transition flex items-center justify-center gap-2 shadow-xs">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              <span>បើកឆាត Telegram (@Samon128)</span>
+            </a>
+            <a href="tel:092120128" class="py-3.5 px-6 rounded-xl bg-brand-dark hover:bg-brand-charcoal text-white text-xs sm:text-sm font-bold transition flex items-center justify-center gap-2 shadow-xs">
+              <i data-lucide="phone" class="w-4 h-4"></i>
+              <span>ខល: 092 120 128</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Map / Store Visuals (គាំទ្រ ២ ទីតាំង ឬរូបភាពផែនទីជាក់ស្តែង) -->
+        <div class="lg:col-span-6 space-y-4">
+          <!-- Multi Location Tabs (ប្រសិនបើមាន ២ ទីតាំង) -->
+          <div id="mapTabsHeader" class="flex items-center gap-2 pb-1">
+            <button onclick="switchMapBranch(0)" id="mapTab-0" class="map-tab active px-4 py-2 rounded-xl text-xs font-bold bg-brand-dark text-white transition flex items-center gap-1.5 shadow-xs">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold"></i>
+              <span id="mapTabLabel-0">ទីតាំងទី ១</span>
+            </button>
+            <button onclick="switchMapBranch(1)" id="mapTab-1" class="map-tab px-4 py-2 rounded-xl text-xs font-bold bg-white text-brand-dark hover:bg-brand-sand transition flex items-center gap-1.5 border border-brand-sand shadow-xs">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold"></i>
+              <span id="mapTabLabel-1">ទីតាំងទី ២</span>
+            </button>
+          </div>
+
+          <!-- Interactive Map Container -->
+          <div class="rounded-3xl overflow-hidden border-2 border-brand-sand shadow-lg bg-white p-2 relative group">
+            <iframe 
+              id="mainLocationMapIframe"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61994.50742194685!2d102.58434676579667!3d13.655964893796851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311b17b2fb0a86d5%3A0xe67cfce4dae4be71!2sPoipet%2C%20Banteay%20Meanchey%20Province!5e0!3m2!1sen!2skh!4v1700000000000!5m2!1sen!2skh" 
+              class="w-full h-80 rounded-2xl border-0" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+
+            <!-- Quick Open In Google Maps Button overlay on the map -->
+            <a id="mainLocationMapOpenBtn" href="https://maps.google.com/?q=Poipet" target="_blank" class="absolute top-5 left-5 px-3.5 py-2 rounded-xl bg-white/95 backdrop-blur-xs text-brand-dark text-xs font-bold border border-gray-200 shadow-md hover:bg-white flex items-center gap-1.5 transition">
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-blue-600"></i>
+              <span id="mapOpenBtnText">Open in Maps</span>
+            </a>
+          </div>
+
+          <p id="mainLocationMapFooterDesc" class="text-xs text-center text-brand-muted">
+            📍 សេវាកម្មចុះវាស់វែង និងដំឡើងដល់គេហដ្ឋានទូទាំង <b>ក្រុងប៉ោយប៉ែត</b> និងតំបន់ក្បែរខាង
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CART SLIDE-OVER DRAWER -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none transition-opacity duration-300 opacity-0">
+    <div onclick="toggleCartDrawer()" class="absolute inset-0 bg-black/40 backdrop-blur-xs"></div>
+    <div class="absolute inset-y-0 right-0 max-w-full flex pl-10 pointer-events-auto">
+      <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between">
+        
+        <!-- Drawer Header -->
+        <div class="p-5 border-b border-brand-sand flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <i data-lucide="shopping-bag" class="w-5 h-5 text-brand-gold"></i>
+            <h3 class="text-base font-bold text-brand-dark">កន្ត្រកទំនិញរបស់អ្នក</h3>
+          </div>
+          <button onclick="toggleCartDrawer()" class="p-1 rounded-lg text-brand-muted hover:text-brand-dark">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Drawer Body -->
+        <div id="drawerCartItems" class="p-5 flex-1 overflow-y-auto divide-y divide-brand-sand custom-scrollbar">
+          <!-- Dynamically filled -->
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="p-5 border-t border-brand-sand bg-brand-cream space-y-3">
+          <div class="flex justify-between text-sm font-bold text-brand-dark">
+            <span>ទឹកប្រាក់សរុប</span>
+            <span id="drawerTotal" class="text-brand-gold text-lg">$0.00</span>
+          </div>
+          <a href="#orderOnline" onclick="toggleCartDrawer()" class="w-full py-3.5 rounded-xl gold-btn text-white text-center font-bold text-xs block shadow-xs hover:brightness-105 transition">
+            ទៅកាន់កន្លែងកុម្ម៉ង់ (Checkout)
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING TELEGRAM CHAT BUTTON (ដូច Web App ទំនើប) -->
+  <a href="https://t.me/Samon128" target="_blank" class="fixed bottom-6 right-6 z-40 bg-[#0088cc] hover:bg-[#0077b5] text-white p-3.5 sm:px-5 sm:py-3.5 rounded-full shadow-xl flex items-center gap-2.5 group transition-transform hover:scale-105">
+    <i data-lucide="send" class="w-5 h-5"></i>
+    <span class="hidden sm:inline text-xs font-bold">ឆាត Telegram (@Samon128)</span>
+  </a>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-dark text-white py-12 text-xs text-gray-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/10">
+        <!-- Footer Brand Logo & Decorated Name -->
+        <div class="flex items-center gap-3.5 group">
+          <div class="brand-logo-ring rounded-2xl shadow-md">
+            <img src="icon.png.ico" alt="រចនាម៉ូតវាំងនន ប៉ោយប៉ែត" class="w-11 h-11 rounded-[14px] object-cover bg-white">
+          </div>
+          <div>
+            <h4 class="text-base font-black text-white dynamic-store-title flex items-center gap-2">
+              <span>រចនាម៉ូតវាំងនន ប៉ោយប៉ែត</span>
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-gold"></i>
+            </h4>
+            <p class="text-[10px] tracking-wider uppercase text-brand-gold font-semibold">POIPET CURTAIN DESIGN & INSTALLATION</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-6 text-gray-300">
+          <a href="#home" class="hover:text-brand-gold transition">ទំព័រដើម</a>
+          <a href="#models" class="hover:text-brand-gold transition">ម៉ូត & ពណ៌ក្រណាត់</a>
+          <a href="#promotions" class="hover:text-brand-gold transition">ប្រូម៉ូសិន</a>
+          <a href="#calculator" class="hover:text-brand-gold transition">គណនាតម្លៃ</a>
+          <a href="#orderOnline" class="hover:text-brand-gold transition">កម្មង់អនឡាញ</a>
+          <a href="#contact" class="hover:text-brand-gold transition">ទំនាក់ទំនង</a>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-gray-500">
+        <p>© 2026 រចនាម៉ូតវាំងនន ប៉ោយប៉ែត. រក្សាសិទ្ធិគ្រប់យ៉ាង។</p>
+        <p>បម្រើសេវាកម្មរចនា កាត់ដេរ និងដំឡើងវាំងននទូទាំងក្រុងប៉ោយប៉ែត។</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Mobile Navigation Toggle
+    const mobileNavBtn = document.getElementById('mobileNavBtn');
+    const mobileNavMenu = document.getElementById('mobileNavMenu');
+    mobileNavBtn.addEventListener('click', () => {
+      mobileNavMenu.classList.toggle('hidden');
+    });
+
+    // 1. DYNAMIC CATALOG PRODUCTS & CATEGORIES SYNC WITH ADMIN
+    let defaultProducts = [
+      { id: 1, name: 'វាំងនន ២ ជាន់ Blackout & Sheer', category: 'វាំងននប្រណិត ២ ជាន់', price: 18, colors: ['ប្រផេះក្រម៉ៅ', 'ក្រែមពន្លឺ', 'មាសរលោង'], img: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop' },
+      { id: 2, name: 'វាំងននស្វ័យប្រវត្ត Smart Motor', category: 'វាំងននស្វ័យប្រវត្ត', price: 28, colors: ['សភ្លុក', 'ប្រផេះទំនើប', 'ត្នោតកក់ក្តៅ'], img: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800&auto=format&fit=crop' },
+      { id: 3, name: 'វាំងននរមូល Roller & Zebra Blinds', category: 'វាំងននរមូល Roller', price: 15, colors: ['សសុទ្ធ', 'ប្រផេះស្រាល', 'កាហ្វេ'], img: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800&auto=format&fit=crop' },
+      { id: 4, name: 'វាំងននរលកស្មើ Ripple Fold S-Curve', category: 'វាំងននប្រណិត ២ ជាន់', price: 22, colors: ['សាច់ក្រែម', 'ប្រផេះស៊ីម៉ង់ត៍', 'ខៀវចាស់'], img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=800&auto=format&fit=crop' },
+      { id: 5, name: 'វាំងននបន្ទះបញ្ឈរ Vertical Blinds', category: 'វាំងននការិយាល័យ', price: 14, colors: ['សថ្លា', 'ប្រផេះ', 'ខៀវស្រាល'], img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop' }
+    ];
+
+    let storeProducts = JSON.parse(localStorage.getItem('poipet_products')) || defaultProducts;
+
+    let defaultCategories = [
+      { id: 'luxury', name: 'វាំងននប្រណិត ២ ជាន់' },
+      { id: 'smart', name: 'វាំងននស្វ័យប្រវត្ត' },
+      { id: 'roller', name: 'វាំងននរមូល Roller' },
+      { id: 'office', name: 'វាំងននការិយាល័យ' }
+    ];
+
+    let storeCategories = JSON.parse(localStorage.getItem('poipet_categories')) || defaultCategories;
+
+    function refreshStorefrontData() {
+      storeProducts = JSON.parse(localStorage.getItem('poipet_products')) || defaultProducts;
+      storeCategories = JSON.parse(localStorage.getItem('poipet_categories')) || defaultCategories;
+      renderDynamicStorefrontProducts();
+    }
+
+    function renderDynamicStorefrontProducts() {
+      // 1. Render Category Filter Tabs
+      const tabsContainer = document.getElementById('curtainCategoryTabs');
+      if (tabsContainer) {
+        tabsContainer.innerHTML = `
+          <button onclick="filterCatalog('all', this)" class="catalog-tab active px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-brand-dark text-white transition">ទាំងអស់ (All)</button>
+        `;
+        storeCategories.forEach(cat => {
+          const btn = document.createElement('button');
+          btn.className = 'catalog-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-brand-sand text-brand-dark hover:bg-brand-tan/50 transition';
+          btn.innerText = cat.name;
+          btn.onclick = function() { filterCatalog(cat.name, this); };
+          tabsContainer.appendChild(btn);
+        });
+      }
+
+      // 2. Render Products Grid
+      const grid = document.getElementById('productGrid');
+      if (grid) {
+        grid.innerHTML = '';
+        storeProducts.forEach((p, idx) => {
+          const card = document.createElement('div');
+          card.className = 'product-item bg-brand-cream border border-brand-sand rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col justify-between';
+          card.setAttribute('data-category', p.category || '');
+          card.setAttribute('data-name', p.name);
+          card.setAttribute('data-price', p.price);
+
+          const colorsList = p.colors || ['ប្រផេះ', 'ក្រែម', 'ស'];
+          const prodImages = (p.images && p.images.length > 0) ? p.images : [p.img];
+
+          card.innerHTML = `
+            <div>
+              <div class="relative h-64 overflow-hidden bg-brand-sand group">
+                <img id="img-prod-${p.id}" src="${p.img}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold bg-white/90 backdrop-blur-xs text-brand-dark shadow-xs">${p.category || 'ម៉ូតប្រណិត'}</span>
+                <span class="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg text-xs font-bold bg-brand-dark text-brand-gold">$${p.price} / m²</span>
+                ${prodImages.length > 1 ? `<span class="absolute top-3 right-3 px-2 py-0.5 rounded-md bg-black/60 text-white text-[10px] font-bold backdrop-blur-xs flex items-center gap-1"><i data-lucide="images" class="w-3 h-3"></i> ${prodImages.length} សន្លឹក</span>` : ''}
+              </div>
+
+              <!-- Multi-Images Gallery Thumbnails (៤ ទៅ ៥ សន្លឹក) -->
+              ${prodImages.length > 1 ? `
+                <div class="flex items-center gap-1.5 px-6 pt-3 overflow-x-auto pb-1">
+                  ${prodImages.map((imgUrl, i) => `
+                    <button type="button" onclick="swapProductImage(${p.id}, '${imgUrl}')" class="w-10 h-10 rounded-lg overflow-hidden border border-brand-sand hover:border-brand-gold shrink-0 transition focus:ring-2 focus:ring-brand-gold">
+                      <img src="${imgUrl}" class="w-full h-full object-cover">
+                    </button>
+                  `).join('')}
+                </div>
+              ` : ''}
+
+              <div class="p-6">
+                <h3 class="text-lg font-bold text-brand-dark">${p.name}</h3>
+                <p class="text-xs text-brand-muted mt-1 leading-relaxed">ក្រណាត់គុណភាពខ្ពស់ ធន់ជាប់បានយូរ មិនស្លេកពណ៌ រចនាស្អាតផ្ចិតផ្ចង់ស្របតាមគេហដ្ឋាន។</p>
+
+                <!-- Color Palette -->
+                <div class="mt-4 pt-4 border-t border-brand-sand">
+                  <span class="text-xs font-semibold text-brand-charcoal block mb-2">ជម្រើសពណ៌ក្រណាត់:</span>
+                  <div class="flex flex-wrap items-center gap-1.5">
+                    ${colorsList.map(c => `
+                      <span class="px-2.5 py-1 rounded-lg bg-brand-sand text-brand-dark text-[11px] font-medium border border-brand-tan/40">${c}</span>
+                    `).join('')}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 pt-0 flex gap-2">
+              <button onclick="quickOrder('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.id}')" class="flex-1 py-2.5 rounded-xl gold-btn text-white text-xs font-bold shadow-xs hover:brightness-105 transition flex items-center justify-center gap-1.5">
+                <i data-lucide="shopping-bag" class="w-4 h-4"></i> កុម្ម៉ង់ឥឡូវ
+              </button>
+              <button onclick="loadToCalculator('${p.name.replace(/'/g, "\\'")}', ${p.price})" class="p-2.5 rounded-xl bg-white border border-brand-tan text-brand-dark hover:bg-brand-sand transition" title="គណនាតម្លៃ">
+                <i data-lucide="calculator" class="w-4 h-4 text-brand-gold"></i>
+              </button>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      }
+
+      // 3. Update Calculator Select Options
+      const calcSelect = document.getElementById('calcModelSelect');
+      if (calcSelect) {
+        calcSelect.innerHTML = '';
+        storeProducts.forEach(p => {
+          const opt = document.createElement('option');
+          opt.value = p.price;
+          opt.setAttribute('data-name', p.name);
+          opt.innerText = `${p.name} (~$${p.price}/m²)`;
+          calcSelect.appendChild(opt);
+        });
+      }
+
+      lucide.createIcons();
+    }
+
+    // 1. FILTER CURTAIN CATALOG
+    function swapProductImage(prodId, imgSrc) {
+      const img = document.getElementById(`img-prod-${prodId}`);
+      if (img) img.src = imgSrc;
+    }
+
+    function filterCatalog(category, el) {
+      document.querySelectorAll('.catalog-tab').forEach(tab => {
+        tab.classList.remove('active', 'bg-brand-dark', 'text-white');
+        tab.classList.add('bg-brand-sand', 'text-brand-dark');
+      });
+      el.classList.add('active', 'bg-brand-dark', 'text-white');
+      el.classList.remove('bg-brand-sand', 'text-brand-dark');
+
+      const products = document.querySelectorAll('.product-item');
+      products.forEach(p => {
+        const itemCat = p.getAttribute('data-category');
+        if (category === 'all' || itemCat === category) {
+          p.style.display = 'flex';
+        } else {
+          p.style.display = 'none';
+        }
+      });
+    }
+
+    // 2. CHANGE COLOR IN PRODUCT CARD
+    function changeColor(prodId, colorCode, colorName, newImgUrl) {
+      const el = document.getElementById(`selected-color-${prodId}`);
+      if (el) el.innerText = colorName;
+      if (newImgUrl) {
+        const img = document.getElementById(`img-prod-${prodId}`);
+        if (img) img.src = newImgUrl;
+      }
+    }
+
+    // 3. SHOPPING CART STATE & FUNCTIONS
+    let cart = [];
+
+    function updateCartUI() {
+      const badge = document.getElementById('cartCountBadge');
+      const orderItemCount = document.getElementById('orderItemCount');
+      const cartItemsList = document.getElementById('cartItemsList');
+      const emptyNotice = document.getElementById('emptyCartNotice');
+      const drawerItems = document.getElementById('drawerCartItems');
+
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      badge.innerText = totalItems;
+      orderItemCount.innerText = `${totalItems} មុខ`;
+
+      if (cart.length === 0) {
+        emptyNotice.classList.remove('hidden');
+        cartItemsList.innerHTML = '';
+        cartItemsList.appendChild(emptyNotice);
+        drawerItems.innerHTML = '<div class="py-8 text-center text-xs text-brand-muted">មិនទាន់មានទំនិញក្នុងកន្ត្រកនៅឡើយទេ។</div>';
+      } else {
+        emptyNotice.classList.add('hidden');
+        cartItemsList.innerHTML = '';
+        drawerItems.innerHTML = '';
+
+        cart.forEach((item, index) => {
+          // Checkout list item
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'py-3 flex items-center justify-between text-xs';
+          itemDiv.innerHTML = `
+            <div>
+              <span class="font-bold text-brand-dark block">${item.name}</span>
+              <span class="text-brand-muted text-[11px]">${item.details} (${item.qty} ឈុត)</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="font-bold text-brand-gold">$${item.totalPrice.toFixed(2)}</span>
+              <button onclick="removeCartItem(${index})" class="text-gray-400 hover:text-rose-500">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+              </button>
+            </div>
+          `;
+          cartItemsList.appendChild(itemDiv);
+
+          // Drawer list item
+          const drawerDiv = document.createElement('div');
+          drawerDiv.className = 'py-3 flex items-center justify-between text-xs';
+          drawerDiv.innerHTML = `
+            <div>
+              <span class="font-bold text-brand-dark block">${item.name}</span>
+              <span class="text-brand-muted text-[11px]">${item.details} x ${item.qty}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-brand-gold">$${item.totalPrice.toFixed(2)}</span>
+              <button onclick="removeCartItem(${index})" class="text-gray-400 hover:text-rose-500">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          `;
+          drawerItems.appendChild(drawerDiv);
+        });
+      }
+
+      // Re-create icons for trash
+      lucide.createIcons();
+
+      // Calculate totals
+      const totalCost = cart.reduce((sum, item) => sum + item.totalPrice, 0);
+      document.getElementById('cartSubtotal').innerText = `$${totalCost.toFixed(2)}`;
+      document.getElementById('cartGrandTotal').innerText = `$${totalCost.toFixed(2)}`;
+      document.getElementById('drawerTotal').innerText = `$${totalCost.toFixed(2)}`;
+    }
+
+    function removeCartItem(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function quickOrder(modelName, unitPrice, prodId) {
+      const colorName = document.getElementById(`selected-color-${prodId}`).innerText;
+      // Default standard window: 2m x 2.5m = 5m²
+      const defaultArea = 5.0;
+      const price = unitPrice * defaultArea;
+
+      cart.push({
+        name: modelName,
+        details: `ពណ៌: ${colorName} | ទំហំគំរូ 2m x 2.5m`,
+        qty: 1,
+        totalPrice: price
+      });
+
+      updateCartUI();
+      toggleCartDrawer(true);
+    }
+
+    // 4. PRICE CALCULATOR
+    function runCalculator() {
+      const select = document.getElementById('calcModelSelect');
+      const rate = parseFloat(select.value);
+      const width = parseFloat(document.getElementById('calcWidth').value) || 0;
+      const height = parseFloat(document.getElementById('calcHeight').value) || 0;
+      const qty = parseInt(document.getElementById('calcQty').value) || 1;
+
+      const area = (width * height) * qty;
+      const total = area * rate;
+
+      document.getElementById('calcTotalDisplay').innerText = total.toFixed(2);
+      document.getElementById('calcAreaDisplay').innerText = area.toFixed(2);
+      document.getElementById('calcQtyDisplay').innerText = qty;
+
+      // Update Telegram Link in calculator
+      const selectedName = select.options[select.selectedIndex].getAttribute('data-name');
+      const telegramMsg = encodeURIComponent(`សួស្តី! ខ្ញុំចង់សាកសួរតម្លៃ ${selectedName} ទំហំ ${width}m x ${height}m ចំនួន ${qty} បង្អួច (សរុបប្រហែល $${total.toFixed(2)})`);
+      document.getElementById('calcTelegramDirectBtn').href = `https://t.me/Samon128?text=${telegramMsg}`;
+    }
+
+    function addCalculatedToCart() {
+      const select = document.getElementById('calcModelSelect');
+      const name = select.options[select.selectedIndex].getAttribute('data-name');
+      const width = document.getElementById('calcWidth').value;
+      const height = document.getElementById('calcHeight').value;
+      const qty = parseInt(document.getElementById('calcQty').value) || 1;
+      const total = parseFloat(document.getElementById('calcTotalDisplay').innerText) || 0;
+
+      cart.push({
+        name: name,
+        details: `ទំហំ: ${width}m x ${height}m (${qty} បង្អួច)`,
+        qty: qty,
+        totalPrice: total
+      });
+
+      updateCartUI();
+      toggleCartDrawer(true);
+    }
+
+    function loadToCalculator(modelName, rate) {
+      const select = document.getElementById('calcModelSelect');
+      for (let i = 0; i < select.options.length; i++) {
+        if (parseFloat(select.options[i].value) === rate) {
+          select.selectedIndex = i;
+          break;
+        }
+      }
+      runCalculator();
+      document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function applyPromo(promoName, specialRate) {
+      loadToCalculator(promoName, specialRate);
+    }
+
+    // 5. DRAWER TOGGLE
+    function toggleCartDrawer(forceOpen = false) {
+      const drawer = document.getElementById('cartDrawer');
+      if (forceOpen) {
+        drawer.classList.remove('opacity-0', 'pointer-events-none');
+      } else {
+        if (drawer.classList.contains('opacity-0')) {
+          drawer.classList.remove('opacity-0', 'pointer-events-none');
+        } else {
+          drawer.classList.add('opacity-0', 'pointer-events-none');
+        }
+      }
+    }
+
+    // 6. PROCESS ONLINE ORDER TO TELEGRAM
+    function processOnlineOrder(e) {
+      e.preventDefault();
+      const name = document.getElementById('orderCustName').value;
+      const phone = document.getElementById('orderCustPhone').value;
+      const address = document.getElementById('orderCustAddress').value;
+      const notes = document.getElementById('orderCustNotes').value;
+
+      let itemsSummary = '';
+      if (cart.length > 0) {
+        itemsSummary = cart.map(i => `- ${i.name} [${i.details}] = $${i.totalPrice.toFixed(2)}`).join('\n');
+      } else {
+        itemsSummary = '- ណាត់ជួបវាស់វែង និងមើលគំរូក្រណាត់ផ្ទាល់ដល់ទីកន្លែង';
+      }
+
+      const grandTotal = document.getElementById('cartGrandTotal').innerText;
+
+      const fullMessage = `🛍️ **ការកុម្ម៉ង់វាំងននអនឡាញថ្មី (រចនាម៉ូតវាំងនន ប៉ោយប៉ែត)** 🛍️\n\n` +
+                          `👤 អតិថិជន៖ ${name}\n` +
+                          `📞 លេខទូរស័ព្ទ៖ ${phone}\n` +
+                          `📍 ទីតាំងនៅប៉ោយប៉ែត៖ ${address}\n\n` +
+                          `📦 **មុខទំនិញដែលបានជ្រើសរើស៖**\n${itemsSummary}\n\n` +
+                          `💰 ទឹកប្រាក់សរុបប្រហែល៖ ${grandTotal}\n` +
+                          `📝 កំណត់សម្គាល់៖ ${notes || 'គ្មាន'}`;
+
+      // Save order to LocalStorage for Admin Web UI
+      const existingOrders = JSON.parse(localStorage.getItem('poipet_orders')) || [];
+      const newOrderObj = {
+        id: 'ORD-' + Date.now().toString().slice(-4),
+        name: name,
+        phone: phone,
+        address: address,
+        model: cart.length > 0 ? cart[0].name : 'កុម្ម៉ង់ទូទៅ',
+        color: 'តាមការកំណត់',
+        area: cart.length > 0 ? `${cart.length} មុខ` : '1 បង្អួច',
+        total: parseFloat(grandTotal.replace('$', '')) || 0,
+        status: 'រង់ចាំវាស់វែង'
+      };
+      existingOrders.unshift(newOrderObj);
+      localStorage.setItem('poipet_orders', JSON.stringify(existingOrders));
+
+      const encodedUrl = `https://t.me/Samon128?text=${encodeURIComponent(fullMessage)}`;
+      
+      // Open Telegram
+      window.open(encodedUrl, '_blank');
+
+      // Show notice
+      document.getElementById('orderSuccessNotice').classList.remove('hidden');
+    }
+
+    // Load and Apply CMS Site Settings Dynamically
+    function applyDynamicSiteSettings() {
+      const settings = JSON.parse(localStorage.getItem('poipet_site_settings'));
+      if (!settings) return;
+
+      // 1. Store Title
+      if (settings.storeTitle) {
+        document.title = `${settings.storeTitle} | Poipet Modern Curtain Store`;
+        const titleNodes = document.querySelectorAll('.dynamic-store-title');
+        titleNodes.forEach(n => n.innerText = settings.storeTitle);
+      }
+
+      // 2. Announcement Text
+      if (settings.announcementText) {
+        const el = document.getElementById('dynamicAnnouncement');
+        if (el) el.innerText = settings.announcementText;
+      }
+
+      // 3. Store Phones
+      if (settings.storePhones) {
+        const phoneNodes = document.querySelectorAll('.dynamic-store-phone');
+        phoneNodes.forEach(n => n.innerText = settings.storePhones);
+      }
+
+      // 4. Telegram
+      if (settings.storeTelegram) {
+        const tgHandle = settings.storeTelegram.replace('@', '');
+        const tgLinks = document.querySelectorAll('.dynamic-telegram-link');
+        tgLinks.forEach(a => a.href = `https://t.me/${tgHandle}`);
+        const tgTexts = document.querySelectorAll('.dynamic-telegram-text');
+        tgTexts.forEach(t => t.innerText = `@${tgHandle}`);
+      }
+
+      // 5. Multi Locations Rendering (សាខាទីតាំង និង Google Maps)
+      if (settings.locations && Array.isArray(settings.locations) && settings.locations.length > 0) {
+        activeMapLocations = settings.locations;
+        const locContainer = document.getElementById('dynamicLocationsContainer');
+        if (locContainer) {
+          locContainer.innerHTML = '';
+          settings.locations.forEach((loc, idx) => {
+            const locDiv = document.createElement('div');
+            locDiv.className = 'flex items-start justify-between gap-3 p-3.5 rounded-xl bg-brand-cream border border-brand-sand transition hover:border-brand-tan cursor-pointer';
+            locDiv.onclick = () => switchMapBranch(idx);
+            
+            const mapButton = loc.mapUrl && loc.mapUrl.trim() !== '' 
+              ? `<a href="${loc.mapUrl}" target="_blank" onclick="event.stopPropagation()" class="shrink-0 px-2.5 py-1.5 rounded-lg bg-white border border-brand-tan/50 hover:bg-brand-gold hover:text-white text-brand-dark text-[11px] font-bold transition flex items-center gap-1 shadow-xs">
+                   <i data-lucide="navigation" class="w-3.5 h-3.5 text-brand-gold"></i>
+                   <span>បើកផែនទី</span>
+                 </a>`
+              : `<a href="https://maps.google.com/?q=${encodeURIComponent(loc.address || 'Poipet')}" target="_blank" onclick="event.stopPropagation()" class="shrink-0 px-2.5 py-1.5 rounded-lg bg-white border border-brand-tan/50 hover:bg-brand-gold hover:text-white text-brand-dark text-[11px] font-bold transition flex items-center gap-1 shadow-xs">
+                   <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold"></i>
+                   <span>ផែនទី</span>
+                 </a>`;
+
+            locDiv.innerHTML = `
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <i data-lucide="map-pin" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-brand-dark">${loc.title || `ទីតាំងហាង (សាខាទី ${idx + 1})`}</h4>
+                  <p class="text-[11px] text-brand-muted">${loc.address || ''}</p>
+                </div>
+              </div>
+              ${mapButton}
+            `;
+            locContainer.appendChild(locDiv);
+          });
+        }
+
+        // Update Map Switcher Tabs
+        if (document.getElementById('mapTabLabel-0') && settings.locations[0]) {
+          document.getElementById('mapTabLabel-0').innerText = settings.locations[0].title || 'ទីតាំងទី ១';
+        }
+        if (document.getElementById('mapTabLabel-1') && settings.locations[1]) {
+          document.getElementById('mapTabLabel-1').innerText = settings.locations[1].title || 'ទីតាំងទី ២';
+          document.getElementById('mapTab-1').classList.remove('hidden');
+        } else if (document.getElementById('mapTab-1')) {
+          document.getElementById('mapTab-1').classList.add('hidden');
+        }
+
+        switchMapBranch(0);
+      } else if (settings.storeAddress) {
+        const addrNodes = document.querySelectorAll('.dynamic-store-address');
+        addrNodes.forEach(n => n.innerText = settings.storeAddress);
+      }
+
+      // 6. Hero Heading & Highlight
+      if (settings.heroHeading && document.getElementById('dynamicHeroHeading')) {
+        document.getElementById('dynamicHeroHeading').innerText = settings.heroHeading;
+      }
+      if (settings.heroHighlight && document.getElementById('dynamicHeroHighlight')) {
+        document.getElementById('dynamicHeroHighlight').innerText = settings.heroHighlight;
+      }
+      if (settings.heroDesc && document.getElementById('dynamicHeroDesc')) {
+        document.getElementById('dynamicHeroDesc').innerText = settings.heroDesc;
+      }
+      if (settings.heroImage && document.getElementById('dynamicHeroImage')) {
+        document.getElementById('dynamicHeroImage').src = settings.heroImage;
+      }
+
+      // 7. Promo Badge
+      if (settings.promoBadge && document.getElementById('dynamicPromoBadge')) {
+        document.getElementById('dynamicPromoBadge').innerText = settings.promoBadge;
+      }
+      if (settings.promoDetails && document.getElementById('dynamicPromoDetails')) {
+        document.getElementById('dynamicPromoDetails').innerText = settings.promoDetails;
+      }
+    }
+
+    // Global Locations State for Map Switcher
+    let activeMapLocations = [
+      { title: "សាខាទី ១ (ក្រុងប៉ោយប៉ែត)", address: "ក្រុងប៉ោយប៉ែត, ខេត្តបន្ទាយមានជ័យ (សេវាវាស់វែងដល់ទីកន្លែងឥតគិតថ្លៃ)", mapUrl: "https://maps.google.com/?q=Poipet", embedUrl: "" },
+      { title: "សាខាទី ២ (ជិតរង្វង់មូល)", address: "ផ្លូវជាតិលេខ 5, ជិតរង្វង់មូលប៉ោយប៉ែត", mapUrl: "https://maps.google.com/?q=Poipet+Roundabout", embedUrl: "" }
+    ];
+
+    function switchMapBranch(index) {
+      if (!activeMapLocations[index]) return;
+      const target = activeMapLocations[index];
+
+      // Update Tabs active style
+      document.querySelectorAll('.map-tab').forEach((tab, i) => {
+        if (i === index) {
+          tab.classList.add('bg-brand-dark', 'text-white');
+          tab.classList.remove('bg-white', 'text-brand-dark');
+        } else {
+          tab.classList.remove('bg-brand-dark', 'text-white');
+          tab.classList.add('bg-white', 'text-brand-dark');
+        }
+      });
+
+      // Update Map Iframe & Links
+      const iframe = document.getElementById('mainLocationMapIframe');
+      const openBtn = document.getElementById('mainLocationMapOpenBtn');
+      const footerDesc = document.getElementById('mainLocationMapFooterDesc');
+
+      if (target.embedUrl && target.embedUrl.trim() !== '') {
+        iframe.src = target.embedUrl;
+      } else if (target.mapUrl && target.mapUrl.includes('google.com/maps')) {
+        // Fallback to location search embed
+        iframe.src = `https://maps.google.com/maps?q=${encodeURIComponent(target.address || target.title)}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
+      } else {
+        iframe.src = `https://maps.google.com/maps?q=${encodeURIComponent(target.address || 'Poipet')}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
+      }
+
+      if (openBtn) {
+        openBtn.href = target.mapUrl || `https://maps.google.com/?q=${encodeURIComponent(target.address || target.title)}`;
+      }
+
+      if (footerDesc) {
+        footerDesc.innerHTML = `📍 <b>${target.title}</b>៖ ${target.address || 'ក្រុងប៉ោយប៉ែត'}`;
+      }
+    }
+    refreshStorefrontData();
+    applyDynamicSiteSettings();
+    runCalculator();
+    updateCartUI();
+
+    // Listen for storage changes from other tabs (Admin edits sync automatically)
+    window.addEventListener('storage', (event) => {
+      if (event.key === 'poipet_products' || event.key === 'poipet_categories') {
+        refreshStorefrontData();
+      }
+      if (event.key === 'poipet_site_settings') {
+        applyDynamicSiteSettings();
+      }
+    });
+  </script>
+</body>
+</html>

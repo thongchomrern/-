@@ -1,0 +1,150 @@
+{
+  "storeInfo": {
+    "name": "រចនាម៉ូតវាំងនន ប៉ោយប៉ែត",
+    "phones": "092 120 128 / 010 900 934 / 071 9838 900",
+    "telegram": "@Samon128"
+  },
+  "orders": [
+    {
+      "id": "ORD-101",
+      "customerName": "លោក សុខ រតនា",
+      "phone": "092 120 128",
+      "address": "បុរីសានហូ, សង្កាត់ប៉ោយប៉ែត",
+      "model": "វាំងនន ២ ជាន់ Blackout & Sheer",
+      "color": "ប្រផេះក្រម៉ៅ",
+      "dimensions": "2.5m x 2.6m (2 ឈុត)",
+      "totalAmount": 234.0,
+      "status": "រង់ចាំវាស់វែង",
+      "date": "2026-11-04 14:30",
+      "notes": "ចង់ឱ្យជាងចុះវាស់នៅម៉ោង ២ រសៀល"
+    },
+    {
+      "id": "ORD-102",
+      "customerName": "អ្នកស្រី ចាន់ លីដា",
+      "phone": "010 900 934",
+      "address": "សណ្ឋាគារ ហ្គ្រេនប៉ោយប៉ែត",
+      "model": "វាំងននស្វ័យប្រវត្ត Smart Motor",
+      "color": "សភ្លុក (Ivory)",
+      "dimensions": "12 ម៉ែត្រ",
+      "totalAmount": 336.0,
+      "status": "កំពុងដំឡើង",
+      "date": "2026-11-03 10:15",
+      "notes": "ដំឡើងនៅជាន់ទី ៣ បន្ទប់ VIP"
+    },
+    {
+      "id": "ORD-103",
+      "customerName": "លោក វ៉ាន់ ភារម្យ",
+      "phone": "071 9838 900",
+      "address": "ផ្ទះវីឡា ជិតរង្វង់មូលប៉ោយប៉ែត",
+      "model": "វាំងនន Ripple Fold (S-Curve)",
+      "color": "សាច់ក្រែម",
+      "dimensions": "25.0 m²",
+      "totalAmount": 550.0,
+      "status": "រួចរាល់",
+      "date": "2026-11-02 16:45",
+      "notes": "បានទូទាត់ប្រាក់គ្រប់ចំនួន"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "វាំងនន ២ ជាន់ Blackout & Sheer",
+      "category": "វាំងននប្រណិត ២ ជាន់",
+      "price": 18.0,
+      "stock": "មានក្នុងស្តុក",
+      "colors": ["ប្រផេះក្រម៉ៅ", "ក្រែមពន្លឺ", "មាសរលោង", "ខៀវរាត្រី"],
+      "img": "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "id": 2,
+      "name": "វាំងននស្វ័យប្រវត្ត Smart Motor",
+      "category": "វាំងននស្វ័យប្រវត្ត",
+      "price": 28.0,
+      "stock": "មានក្នុងស្តុក",
+      "colors": ["សភ្លុក", "ប្រផេះទំនើប", "ត្នោតកក់ក្តៅ"],
+      "img": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "id": 3,
+      "name": "វាំងននរមូល Roller & Zebra Blinds",
+      "category": "វាំងននរមូល Roller",
+      "price": 15.0,
+      "stock": "មានក្នុងស្តុក",
+      "colors": ["សសុទ្ធ", "ប្រផេះស្រាល", "កាហ្វេ"],
+      "img": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "id": 4,
+      "name": "វាំងននរលកស្មើ Ripple Fold (S-Curve)",
+      "category": "វាំងននប្រណិត ២ ជាន់",
+      "price": 22.0,
+      "stock": "មានក្នុងស្តុក",
+      "colors": ["សាច់ក្រែម", "ប្រផេះស៊ីម៉ង់ត៍", "ខៀវចាស់"],
+      "img": "https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "id": 5,
+      "name": "វាំងននបន្ទះបញ្ឈរ Vertical Blinds",
+      "category": "វាំងននការិយាល័យ",
+      "price": 14.0,
+      "stock": "មានក្នុងស្តុក",
+      "colors": ["សថ្លា", "ប្រផេះ", "ខៀវស្រាល"],
+      "img": "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop"
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "name": "លោក សុខ រតនា",
+      "phone": "092 120 128",
+      "address": "បុរីសានហូ, សង្កាត់ប៉ោយប៉ែត",
+      "ordersCount": 2,
+      "totalSpent": 750.0,
+      "type": "ផ្ទះវីឡា"
+    },
+    {
+      "id": 2,
+      "name": "អ្នកស្រី ចាន់ លីដា",
+      "phone": "010 900 934",
+      "address": "សណ្ឋាគារ ហ្គ្រេនប៉ោយប៉ែត",
+      "ordersCount": 4,
+      "totalSpent": 2450.0,
+      "type": "សណ្ឋាគារ"
+    },
+    {
+      "id": 3,
+      "name": "លោក វ៉ាន់ ភារម្យ",
+      "phone": "071 9838 900",
+      "address": "ជិតរង្វង់មូលប៉ោយប៉ែត",
+      "ordersCount": 1,
+      "totalSpent": 550.0,
+      "type": "ផ្ទះល្វែង"
+    }
+  ],
+  "staff": [
+    {
+      "id": 1,
+      "name": "លោក មករា",
+      "role": "ប្រធានជាងដំឡើង",
+      "phone": "092 120 128",
+      "activeTasks": 2,
+      "status": "កំពុងធ្វើការ"
+    },
+    {
+      "id": 2,
+      "name": "លោក ពិសិដ្ឋ",
+      "role": "ជាងជំនាញដំឡើង & វាស់វែង",
+      "phone": "010 900 934",
+      "activeTasks": 1,
+      "status": "កំពុងធ្វើការ"
+    },
+    {
+      "id": 3,
+      "name": "អ្នកស្រី គឹមលាង",
+      "role": "ប្រធានជាងកាត់ដេរ",
+      "phone": "071 9838 900",
+      "activeTasks": 3,
+      "status": "កំពុងធ្វើការ"
+    }
+  ]
+}

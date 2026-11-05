@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ផ្ទាំងគ្រប់គ្រងម្ចាស់ហាង (Web UI) | រចនាម៉ូតវាំងនន ប៉ោយប៉ែត</title>
+  
+  <!-- Favicon / App Icon -->
+  <link rel="icon" type="image/x-icon" href="icon.png.ico">
+  <link rel="shortcut icon" href="icon.png.ico">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            khmer: ['"Kantumruy Pro"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              cream: '#FAF7F2',
+              sand: '#F4ECE1',
+              gold: '#C5A059',
+              goldHover: '#B38E46',
+              dark: '#1C1917',
+              charcoal: '#292524',
+              muted: '#78716C'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Kantumruy Pro', sans-serif;
+      background-color: #F8F9FA;
+    }
+    .active-nav {
+      background-color: #1C1917;
+      color: #C5A059 !important;
+      font-weight: 600;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .brand-name-luxury {
+      background: linear-gradient(135deg, #1C1917 0%, #C5A059 55%, #856424 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .brand-logo-ring {
+      background: linear-gradient(135deg, #FAF3E0 0%, #C5A059 50%, #9B7832 100%);
+      padding: 2px;
+    }
+  </style>
+</head>
+<body class="text-brand-charcoal antialiased selection:bg-brand-gold selection:text-white">
+
+  <!-- LOGIN OVERLAY / AUTHENTICATION MODAL (សុវត្ថិភាពម្ចាស់ហាង) -->
+  <div id="loginScreen" class="fixed inset-0 z-50 bg-brand-dark/95 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl border border-brand-sand text-center">
+      <img src="icon.png.ico" alt="Logo" class="w-16 h-16 rounded-2xl mx-auto mb-3 object-cover border-2 border-brand-sand shadow-sm">
+      <h2 class="text-lg font-bold text-brand-dark">ចូលប្រើប្រាស់ Web UI ម្ចាស់ហាង</h2>
+      <p class="text-xs text-brand-muted mt-1">រចនាម៉ូតវាំងនន ប៉ោយប៉ែត (Poipet Admin Portal)</p>
+
+      <form onsubmit="handleAdminLogin(event)" class="mt-6 space-y-4 text-left">
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">ឈ្មោះគណនី (Username)</label>
+          <div class="relative">
+            <input type="text" id="adminUser" value="admin" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:ring-2 focus:ring-brand-gold pl-10">
+            <i data-lucide="user" class="w-4 h-4 text-gray-400 absolute left-3.5 top-3.5"></i>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">លេខសម្ងាត់ (Password)</label>
+          <div class="relative">
+            <input type="password" id="adminPass" value="123456" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:ring-2 focus:ring-brand-gold pl-10">
+            <i data-lucide="lock" class="w-4 h-4 text-gray-400 absolute left-3.5 top-3.5"></i>
+          </div>
+          <span class="text-[10px] text-gray-400 mt-1 block">លេខសម្ងាត់លំនាំដើម: <b>123456</b></span>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-dark hover:bg-brand-charcoal text-brand-gold font-bold text-xs transition shadow-md flex items-center justify-center gap-2 mt-2">
+          <i data-lucide="log-in" class="w-4 h-4"></i>
+          <span>ចូលផ្ទាំងគ្រប់គ្រង (Login)</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="flex h-screen overflow-hidden">
+    
+    <!-- SIDEBAR NAVIGATION (WEB UI) -->
+    <aside id="sidebar" class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between shrink-0 transition-all duration-300 z-30">
+      <div>
+        <!-- Decorated Logo Header -->
+        <div class="h-20 flex items-center gap-3 px-5 border-b border-gray-100">
+          <div class="brand-logo-ring rounded-xl shadow-xs">
+            <img src="icon.png.ico" alt="Logo" class="w-10 h-10 rounded-[10px] object-cover bg-white">
+          </div>
+          <div>
+            <h1 class="text-xs font-black brand-name-luxury tracking-tight leading-tight">រចនាម៉ូតវាំងនន ប៉ោយប៉ែត</h1>
+            <div class="flex items-center gap-1 mt-0.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse"></span>
+              <span class="text-[9px] text-brand-gold font-bold uppercase tracking-wider block">Admin Web UI Portal</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="p-4 space-y-1.5 text-xs font-medium">
+          <!-- 1. Dashboard Overview -->
+          <button onclick="switchTab('dashboard')" id="nav-dashboard" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition active-nav">
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+            <span>ផ្ទាំងសង្ខេប (Dashboard)</span>
+          </button>
+
+          <!-- 2. គ្រប់គ្រងការកម្មង់ -->
+          <button onclick="switchTab('orders')" id="nav-orders" class="w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gray-100 text-gray-700 transition">
+            <div class="flex items-center gap-3">
+              <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+              <span>គ្រប់គ្រងការកម្មង់</span>
+            </div>
+            <span id="badgePendingOrders" class="px-2 py-0.5 rounded-full text-[10px] bg-rose-500 text-white font-bold">3 ថ្មី</span>
+          </button>
+
+          <!-- 3. គ្រប់គ្រងផលិតផល -->
+          <button onclick="switchTab('products')" id="nav-products" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-100 text-gray-700 transition">
+            <i data-lucide="package" class="w-4 h-4"></i>
+            <span>គ្រប់គ្រងផលិតផល</span>
+          </button>
+
+          <!-- 4. គ្រប់គ្រងអតិថិជន -->
+          <button onclick="switchTab('customers')" id="nav-customers" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-100 text-gray-700 transition">
+            <i data-lucide="users" class="w-4 h-4"></i>
+            <span>គ្រប់គ្រងអតិថិជន</span>
+          </button>
+
+          <!-- 5. គ្រប់គ្រងបុគ្គលិក -->
+          <button onclick="switchTab('staff')" id="nav-staff" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-100 text-gray-700 transition">
+            <i data-lucide="user-check" class="w-4 h-4"></i>
+            <span>គ្រប់គ្រងបុគ្គលិក & ជាង</span>
+          </button>
+
+          <!-- 6. របាយការណ៍ចំណូល និងចំណេញ -->
+          <button onclick="switchTab('reports')" id="nav-reports" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-100 text-gray-700 transition">
+            <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+            <span>របាយការណ៍ចំណូល & ចំណេញ</span>
+          </button>
+
+          <!-- 7. កែប្រែគេហទំព័រ (CMS Site Editor) -->
+          <button onclick="switchTab('siteEditor')" id="nav-siteEditor" class="w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gray-100 text-gray-700 transition">
+            <div class="flex items-center gap-3">
+              <i data-lucide="layout-template" class="w-4 h-4 text-brand-gold"></i>
+              <span class="font-bold text-brand-dark">កែប្រែ Website ផ្ទាល់</span>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[10px] bg-brand-sand text-brand-gold font-bold">CMS</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- User Profile / Return to Store -->
+      <div class="p-4 border-t border-gray-100 space-y-2">
+        <a href="index.html" target="_blank" class="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-gray-200 text-xs font-semibold text-gray-700 hover:bg-gray-50 transition">
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          <span>មើលគេហទំព័រ (Store)</span>
+        </a>
+        <div class="flex items-center justify-between p-2 rounded-xl bg-gray-50">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-brand-gold text-brand-dark flex items-center justify-center font-bold text-xs">
+              AD
+            </div>
+            <div class="overflow-hidden">
+              <h4 class="text-xs font-bold text-brand-dark truncate">ម្ចាស់ហាង (Owner)</h4>
+              <span class="text-[10px] text-emerald-600 font-medium">● អនឡាញ</span>
+            </div>
+          </div>
+          <button onclick="handleAdminLogout()" class="p-1.5 text-gray-400 hover:text-rose-600" title="ចាកចេញ (Logout)">
+            <i data-lucide="log-out" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+      
+      <!-- Top Bar Header -->
+      <header class="h-20 bg-white border-b border-gray-200 flex items-center justify-between px-6 shrink-0">
+        <div class="flex items-center gap-4">
+          <button onclick="toggleSidebar()" class="p-2 rounded-lg text-gray-600 hover:bg-gray-100 lg:hidden">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+          <div>
+            <h2 id="topBarTitle" class="text-lg font-bold text-brand-dark">ផ្ទាំងសង្ខេបអាជីវកម្ម</h2>
+            <p class="text-xs text-gray-400">ប្រព័ន្ធគ្រប់គ្រងការលក់ និងដំឡើង - រចនាម៉ូតវាំងនន ប៉ោយប៉ែត</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <!-- Direct Telegram Channel Link -->
+          <a href="https://t.me/Samon128" target="_blank" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#0088cc]/10 text-[#0088cc] text-xs font-semibold hover:bg-[#0088cc]/20 transition">
+            <i data-lucide="send" class="w-3.5 h-3.5"></i>
+            <span>Telegram (@Samon128)</span>
+          </a>
+
+          <!-- Quick Tel Contact -->
+          <a href="tel:092120128" class="hidden md:flex items-center gap-1.5 text-xs font-bold text-brand-dark px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 transition">
+            <i data-lucide="phone" class="w-3.5 h-3.5 text-brand-gold"></i>
+            <span>092 120 128</span>
+          </a>
+
+          <!-- Notification Bell -->
+          <button class="relative p-2.5 rounded-xl border border-gray-200 text-gray-600 hover:bg-gray-50 transition">
+            <i data-lucide="bell" class="w-4 h-4"></i>
+            <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-rose-500"></span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Scrollable Tab Content Container -->
+      <main class="flex-1 overflow-y-auto p-6 bg-[#F8F9FA] custom-scroll">
+        
+        <!-- ============================================== -->
+        <!-- TAB 1: DASHBOARD OVERVIEW -->
+        <!-- ============================================== -->
+        <div id="tab-dashboard" class="space-y-6">
+          <!-- Metric KPI Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <!-- Card 1 -->
+            <div class="bg-white p-5 rounded-2xl border border-gray-200/80 shadow-xs flex items-center justify-between">
+              <div>
+                <span class="text-xs text-gray-500 font-medium">ចំណូលសរុបខែនេះ</span>
+                <h3 class="text-2xl font-bold text-brand-dark mt-1" id="dashTotalRevenue">$5,820.00</h3>
+                <span class="text-[11px] text-emerald-600 font-semibold flex items-center gap-1 mt-1">
+                  <i data-lucide="trending-up" class="w-3.5 h-3.5"></i> +18.4% ធៀបខែមុន
+                </span>
+              </div>
+              <div class="w-12 h-12 rounded-xl bg-amber-50 text-brand-gold flex items-center justify-center">
+                <i data-lucide="dollar-sign" class="w-6 h-6"></i>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white p-5 rounded-2xl border border-gray-200/80 shadow-xs flex items-center justify-between">
+              <div>
+                <span class="text-xs text-gray-500 font-medium">ការកុម្ម៉ង់សរុប</span>
+                <h3 class="text-2xl font-bold text-brand-dark mt-1" id="kpiTotalOrders">38 គម្រោង</h3>
+                <span class="text-[11px] text-amber-600 font-semibold flex items-center gap-1 mt-1">
+                  <i data-lucide="clock" class="w-3.5 h-3.5"></i> ៣ គម្រោងកំពុងដំឡើង
+                </span>
+              </div>
+              <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white p-5 rounded-2xl border border-gray-200/80 shadow-xs flex items-center justify-between">
+              <div>
+                <span class="text-xs text-gray-500 font-medium">អតិថិជនសរុប</span>
+                <h3 class="text-2xl font-bold text-brand-dark mt-1" id="kpiTotalCustomers">124 នាក់</h3>
+                <span class="text-[11px] text-emerald-600 font-semibold flex items-center gap-1 mt-1">
+                  <i data-lucide="user-plus" class="w-3.5 h-3.5"></i> +12 នាក់សប្តាហ៍នេះ
+                </span>
+              </div>
+              <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                <i data-lucide="users" class="w-6 h-6"></i>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="bg-white p-5 rounded-2xl border border-gray-200/80 shadow-xs flex items-center justify-between">
+              <div>
+                <span class="text-xs text-gray-500 font-medium">ប្រាក់ចំណេញសុទ្ធ (Net Profit)</span>
+                <h3 class="text-2xl font-bold text-emerald-600 mt-1" id="dashTotalProfit">$2,380.00</h3>
+                <span class="text-[11px] text-gray-500 font-medium block mt-1">
+                  Marg. Profit: ~41%
+                </span>
+              </div>
+              <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
+                <i data-lucide="pie-chart" class="w-6 h-6"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts & Recent Activity -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Revenue Chart -->
+            <div class="lg:col-span-8 bg-white p-6 rounded-2xl border border-gray-200/80 shadow-xs">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <h3 class="text-sm font-bold text-brand-dark">តារាងចំណូលប្រចាំសប្តាហ៍ (ក្រុងប៉ោយប៉ែត)</h3>
+                  <p class="text-xs text-gray-400">គិតជាដុល្លារ ($)</p>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-gray-100 text-xs font-semibold text-gray-600">សប្តាហ៍នេះ</span>
+              </div>
+              <div class="h-64">
+                <canvas id="weeklyRevenueChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Quick Status Summary -->
+            <div class="lg:col-span-4 bg-white p-6 rounded-2xl border border-gray-200/80 shadow-xs flex flex-col justify-between">
+              <div>
+                <h3 class="text-sm font-bold text-brand-dark mb-4">ស្ថានភាពការងារជាងដំឡើងថ្ងៃនេះ</h3>
+                <div class="space-y-3">
+                  <div class="p-3 rounded-xl bg-amber-50 border border-amber-200/60 flex items-center justify-between text-xs">
+                    <div>
+                      <span class="font-bold text-amber-900 block">វាស់វែងនៅ បុរីសានហូ</span>
+                      <span class="text-amber-700 text-[11px]">ជាង សុខា (ម៉ោង 2:00 រសៀល)</span>
+                    </div>
+                    <span class="px-2 py-0.5 rounded-full bg-amber-200 text-amber-800 text-[10px] font-bold">កំពុងធ្វើ</span>
+                  </div>
+
+                  <div class="p-3 rounded-xl bg-blue-50 border border-blue-200/60 flex items-center justify-between text-xs">
+                    <div>
+                      <span class="font-bold text-blue-900 block">ដំឡើងវាំងនន Smart នៅផ្សារត្រី</span>
+                      <span class="text-blue-700 text-[11px]">ជាង រិទ្ធី & ពិសិដ្ឋ</span>
+                    </div>
+                    <span class="px-2 py-0.5 rounded-full bg-blue-200 text-blue-800 text-[10px] font-bold">រៀបចំចេញ</span>
+                  </div>
+
+                  <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200/60 flex items-center justify-between text-xs">
+                    <div>
+                      <span class="font-bold text-emerald-900 block">ប្រគល់ការងារ សណ្ឋាគារប៉ោយប៉ែត</span>
+                      <span class="text-emerald-700 text-[11px]">រួចរាល់ 100% ទទួលប្រាក់គ្រប់</span>
+                    </div>
+                    <span class="px-2 py-0.5 rounded-full bg-emerald-200 text-emerald-800 text-[10px] font-bold">ជោគជ័យ</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-4 border-t border-gray-100">
+                <button onclick="switchTab('orders')" class="w-full py-2.5 rounded-xl bg-brand-dark text-white text-xs font-semibold hover:bg-brand-charcoal transition flex items-center justify-center gap-2">
+                  <span>មើលបញ្ជីកុម្ម៉ង់ទាំងអស់</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TAB 2: គ្រប់គ្រងការកម្មង់ (ORDERS MANAGEMENT) -->
+        <!-- ============================================== -->
+        <div id="tab-orders" class="hidden space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-base font-bold text-brand-dark">បញ្ជីកុម្ម៉ង់ និងការណាត់វាស់វែង</h3>
+              <p class="text-xs text-gray-500">តាមដានដំណើរការកាត់ដេរ និងដំឡើងជូនអតិថិជន</p>
+            </div>
+            
+            <div class="flex items-center gap-2">
+              <button onclick="openNewOrderModal()" class="px-4 py-2.5 rounded-xl bg-brand-gold hover:bg-brand-goldHover text-white text-xs font-bold transition flex items-center gap-1.5 shadow-xs">
+                <i data-lucide="plus" class="w-4 h-4"></i>
+                <span>បន្ថែមការកុម្ម៉ង់ថ្មី</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Orders Table Container -->
+          <div class="bg-white rounded-2xl border border-gray-200/80 shadow-xs overflow-hidden">
+            <div class="p-4 border-b border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div class="relative w-full sm:w-72">
+                <input type="text" id="orderSearchInput" oninput="filterOrdersTable()" placeholder="ស្វែងរកតាមឈ្មោះ ឬលេខទូរស័ព្ទ..." class="w-full pl-9 pr-4 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-gold">
+                <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-2.5"></i>
+              </div>
+
+              <!-- Filter Status -->
+              <div class="flex items-center gap-2 text-xs">
+                <span class="text-gray-500">ស្ថានភាព៖</span>
+                <select id="orderStatusFilter" onchange="filterOrdersTable()" class="bg-gray-50 border border-gray-200 rounded-lg px-2.5 py-1.5 focus:outline-none text-xs">
+                  <option value="all">ទាំងអស់</option>
+                  <option value="រង់ចាំវាស់វែង">រង់ចាំវាស់វែង</option>
+                  <option value="កំពុងកាត់ដេរ">កំពុងកាត់ដេរ</option>
+                  <option value="កំពុងដំឡើង">កំពុងដំឡើង</option>
+                  <option value="រួចរាល់">រួចរាល់ (បានបង់ប្រាក់)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead class="bg-gray-50 text-gray-500 border-b border-gray-100 uppercase tracking-wider font-semibold">
+                  <tr>
+                    <th class="p-4">កូដកុម្ម៉ង់</th>
+                    <th class="p-4">អតិថិជន</th>
+                    <th class="p-4">ទីតាំងនៅប៉ោយប៉ែត</th>
+                    <th class="p-4">ម៉ូតវាំងនន & ពណ៌</th>
+                    <th class="p-4">ទំហំសរុប</th>
+                    <th class="p-4">តម្លៃសរុប</th>
+                    <th class="p-4">ស្ថានភាព</th>
+                    <th class="p-4 text-center">សកម្មភាព</th>
+                  </tr>
+                </thead>
+                <tbody id="ordersTableBody" class="divide-y divide-gray-100 text-gray-700">
+                  <!-- Injected via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TAB 3: គ្រប់គ្រងផលិតផល (PRODUCTS MANAGEMENT) -->
+        <!-- ============================================== -->
+        <div id="tab-products" class="hidden space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-base font-bold text-brand-dark">កាតាឡុកម៉ូតវាំងនន & តម្លៃ</h3>
+              <p class="text-xs text-gray-500">កែប្រែតម្លៃក្នុងមួយម៉ែត្រការ៉េ បន្ថែមពណ៌ក្រណាត់ ឬម៉ូតថ្មី</p>
+            </div>
+            
+            <div class="flex items-center gap-2">
+              <button onclick="openManageCategoriesModal()" class="px-3.5 py-2.5 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 text-brand-dark text-xs font-bold transition flex items-center gap-1.5 shadow-xs">
+                <i data-lucide="tag" class="w-4 h-4 text-brand-gold"></i>
+                <span>គ្រប់គ្រងប្រភេទ/Category</span>
+              </button>
+              <button onclick="openAddProductModal()" class="px-4 py-2.5 rounded-xl bg-brand-gold hover:bg-brand-goldHover text-white text-xs font-bold transition flex items-center gap-1.5 shadow-xs">
+                <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                <span>បន្ថែមម៉ូតវាំងននថ្មី</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Product Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="adminProductsGrid">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TAB 4: គ្រប់គ្រងអតិថិជន (CUSTOMERS MANAGEMENT) -->
+        <!-- ============================================== -->
+        <div id="tab-customers" class="hidden space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-base font-bold text-brand-dark">បញ្ជីព័ត៌មានអតិថិជន (CRM)</h3>
+              <p class="text-xs text-gray-500">រក្សាទុកប្រវត្តិទិញ ទីតាំងផ្ទះ និងទំនាក់ទំនងតាម Telegram</p>
+            </div>
+
+            <div class="relative w-full sm:w-64">
+              <input type="text" id="custSearchInput" oninput="filterCustomerList()" placeholder="ស្វែងរកអតិថិជន..." class="w-full pl-9 pr-4 py-2 rounded-xl bg-white border border-gray-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-gold">
+              <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-2.5"></i>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-gray-200/80 shadow-xs overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead class="bg-gray-50 text-gray-500 border-b border-gray-100 uppercase tracking-wider font-semibold">
+                  <tr>
+                    <th class="p-4">ឈ្មោះអតិថិជន</th>
+                    <th class="p-4">លេខទូរស័ព្ទ</th>
+                    <th class="p-4">ទីតាំងនៅប៉ោយប៉ែត</th>
+                    <th class="p-4">ចំនួនដងកុម្ម៉ង់</th>
+                    <th class="p-4">ទឹកប្រាក់សរុប</th>
+                    <th class="p-4">ប្រភេទផ្ទះ</th>
+                    <th class="p-4 text-center">ឆាត Telegram</th>
+                  </tr>
+                </thead>
+                <tbody id="customersTableBody" class="divide-y divide-gray-100 text-gray-700">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TAB 5: គ្រប់គ្រងបុគ្គលិក (STAFF MANAGEMENT) -->
+        <!-- ============================================== -->
+        <div id="tab-staff" class="hidden space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-base font-bold text-brand-dark">ក្រុមការងារជាងកាត់ដេរ & ដំឡើង</h3>
+              <p class="text-xs text-gray-500">ចាត់ចែងជាងចុះវាស់វែង និងតាមដានលទ្ធផលការងារប្រចាំថ្ងៃ</p>
+            </div>
+            
+            <button onclick="openAddStaffModal()" class="px-4 py-2.5 rounded-xl bg-brand-gold hover:bg-brand-goldHover text-white text-xs font-bold transition flex items-center gap-1.5 shadow-xs">
+              <i data-lucide="user-plus" class="w-4 h-4"></i>
+              <span>បន្ថែមបុគ្គលិក / ជាងថ្មី</span>
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="staffCardsContainer">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TAB 6: របាយការណ៍ចំណូល និងចំណេញ (FINANCIAL REPORTS) -->
+        <!-- ============================================== -->
+        <div id="tab-reports" class="hidden space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-base font-bold text-brand-dark">របាយការណ៍ហិរញ្ញវត្ថុ & ចំណេញសុទ្ធ</h3>
+              <p class="text-xs text-gray-500">គណនាចំណូលដកចំណាយថ្លៃក្រណាត់ គ្រឿងបន្លាស់ និងថ្លៃឈ្នួលជាង</p>
+            </div>
+
+            <!-- Export Buttons -->
+            <div class="flex items-center gap-2">
+              <button onclick="printReport()" class="px-3.5 py-2 rounded-xl bg-white border border-gray-200 text-xs font-semibold text-gray-700 hover:bg-gray-50 transition flex items-center gap-1.5">
+                <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+                <span>បោះពុម្ព (Print)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- P&L Financial Cards Summary -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-xs">
+              <span class="text-xs text-gray-500 font-medium">ចំណូលសរុប (Total Revenue)</span>
+              <h4 class="text-2xl font-bold text-brand-dark mt-1">$14,250.00</h4>
+              <p class="text-[11px] text-gray-400 mt-1">គិតចាប់ពីដើមត្រីមាសនេះ</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-xs">
+              <span class="text-xs text-rose-500 font-medium">ចំណាយដើមទុនសរុប (Total Cost)</span>
+              <h4 class="text-2xl font-bold text-rose-600 mt-1">$8,420.00</h4>
+              <p class="text-[11px] text-gray-400 mt-1">ថ្លៃក្រណាត់ គ្រឿងរ៉ៃ & ឈ្នួលជាង</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border-2 border-emerald-500 shadow-xs bg-emerald-50/20">
+              <span class="text-xs text-emerald-700 font-bold">ប្រាក់ចំណេញសុទ្ធ (Net Profit)</span>
+              <h4 class="text-2xl font-bold text-emerald-600 mt-1">$5,830.00</h4>
+              <p class="text-[11px] text-emerald-700 font-semibold mt-1">អត្រាចំណេញ (Margin): 40.9%</p>
+            </div>
+          </div>
+
+          <!-- Monthly Bar & Expense Breakdown Charts -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-8 bg-white p-6 rounded-2xl border border-gray-200/80 shadow-xs">
+              <h4 class="text-sm font-bold text-brand-dark mb-4">ប្រៀបធៀប ចំណូល vs ចំណេញ តាមខែនីមួយៗ</h4>
+              <div class="h-64">
+                <canvas id="monthlyProfitChart"></canvas>
+              </div>
+            </div>
+
+            <div class="lg:col-span-4 bg-white p-6 rounded-2xl border border-gray-200/80 shadow-xs">
+              <h4 class="text-sm font-bold text-brand-dark mb-4">សមាមាត្រចំណាយដើមទុន</h4>
+              <div class="h-64 flex items-center justify-center">
+                <canvas id="expensePieChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TAB 7: កែប្រែគេហទំព័រ (CMS WEBSITE EDITOR) -->
+        <!-- ============================================== -->
+        <div id="tab-siteEditor" class="hidden space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-base font-bold text-brand-dark">ផ្ទាំងកែប្រែមាតិកាគេហទំព័រ (Website Live Editor)</h3>
+              <p class="text-xs text-gray-500">កែប្រែចំណងជើង អក្សររត់ លេខទូរស័ព្ទ ប្រូម៉ូសិន រួចចុច Save នោះ Website នឹងផ្លាស់ប្តូរភ្លាមៗ!</p>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button onclick="saveSiteContent()" class="px-5 py-2.5 rounded-xl bg-brand-gold hover:bg-brand-goldHover text-white text-xs font-bold transition flex items-center gap-1.5 shadow-md">
+                <i data-lucide="save" class="w-4 h-4"></i>
+                <span>រក្សាទុកលើ Website (Save Changes)</span>
+              </button>
+              <a href="index.html" target="_blank" class="px-4 py-2.5 rounded-xl bg-brand-dark text-brand-gold hover:bg-brand-charcoal text-xs font-bold transition flex items-center gap-1.5">
+                <i data-lucide="eye" class="w-4 h-4"></i>
+                <span>មើល Website ផ្ទាល់</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Alert Notice -->
+          <div id="siteSaveAlert" class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center justify-between">
+            <span class="flex items-center gap-2 font-bold">
+              <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+              បានរក្សាទុកជោគជ័យ! រាល់ការកែប្រែត្រូវបានដាក់ឱ្យដំណើរការលើ Browser ភ្លាមៗ។
+            </span>
+            <button onclick="document.getElementById('siteSaveAlert').classList.add('hidden')" class="text-emerald-700 hover:text-emerald-900 font-bold">✕</button>
+          </div>
+
+          <!-- Form Sections -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- Left Column: Text & Store Info -->
+            <div class="lg:col-span-7 space-y-6">
+              
+              <!-- Card: General Store Details -->
+              <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-xs space-y-4">
+                <h4 class="text-sm font-bold text-brand-dark flex items-center gap-2">
+                  <i data-lucide="store" class="w-4 h-4 text-brand-gold"></i>
+                  <span>ព័ត៌មានទូទៅរបស់ហាង</span>
+                </h4>
+
+                <div>
+                  <label class="block text-xs font-bold text-gray-700 mb-1">ឈ្មោះហាង (Store Title)</label>
+                  <input type="text" id="editStoreTitle" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-brand-gold font-bold text-brand-dark">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-gray-700 mb-1">អក្សររត់ខាងលើបង្អស់ (Announcement Bar Text)</label>
+                  <input type="text" id="editAnnouncementText" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-brand-gold">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">លេខទូរស័ព្ទហាង (Phone Numbers)</label>
+                    <input type="text" id="editStorePhones" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-brand-gold">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Telegram Username (ឧ. Samon128)</label>
+                    <input type="text" id="editStoreTelegram" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-brand-gold">
+                  </div>
+                </div>
+
+                <!-- Multi Locations Manager (អាចបន្ថែមទីតាំងហាងបាន ២ ៣ កន្លែង ឬលើសពីនេះ) -->
+                <div class="pt-2 border-t border-gray-100">
+                  <div class="flex items-center justify-between mb-2">
+                    <label class="block text-xs font-bold text-gray-700">សាខា / ទីតាំងហាងជាក់ស្តែង (Multi-Locations & Google Maps)</label>
+                    <button type="button" onclick="addNewLocationField()" class="px-2.5 py-1 rounded-lg bg-brand-gold text-white text-[11px] font-bold hover:bg-brand-goldHover transition flex items-center gap-1 shadow-xs">
+                      <i data-lucide="plus" class="w-3 h-3"></i>
+                      <span>បន្ថែមទីតាំងថ្មី (+ Add)</span>
+                    </button>
+                  </div>
+                  <p class="text-[10px] text-gray-400 mb-3">អ្នកអាចដាក់ឈ្មោះទីតាំង និង Paste Link Google Maps ដើម្បីឱ្យអតិថិជនចុចទៅមើលផែនទីផ្ទាល់</p>
+                  
+                  <div id="locationsListContainer" class="space-y-3">
+                    <!-- Location Rows will be rendered dynamically -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card: Hero Banner Section -->
+              <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-xs space-y-4">
+                <h4 class="text-sm font-bold text-brand-dark flex items-center gap-2">
+                  <i data-lucide="image" class="w-4 h-4 text-brand-gold"></i>
+                  <span>ផ្ទាំង Banner ទំព័រដើម (Hero Section)</span>
+                </h4>
+
+                <div>
+                  <label class="block text-xs font-bold text-gray-700 mb-1">ចំណងជើងធំ (Hero Main Heading)</label>
+                  <input type="text" id="editHeroHeading" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-brand-gold font-bold">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-gray-700 mb-1">អក្សររំលេចពណ៌មាស (Golden Highlight Text)</label>
+                  <input type="text" id="editHeroHighlight" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-brand-gold text-brand-gold font-bold">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-gray-700 mb-1">អត្ថបទពិពណ៌នាសង្ខេប (Hero Subtitle / Description)</label>
+                  <textarea id="editHeroDesc" rows="3" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-brand-gold"></textarea>
+                </div>
+
+                <!-- Hero Banner Image with File Upload + URL + Live Preview -->
+                <div>
+                  <label class="block text-xs font-bold text-gray-700 mb-1">រូបភាពធំនៅទំព័រមុខ (Hero Banner Image)</label>
+                  
+                  <!-- File Upload Button & Drag Area -->
+                  <div class="mt-1 p-3.5 rounded-xl border-2 border-dashed border-gray-200 hover:border-brand-gold bg-gray-50/60 transition text-center space-y-2">
+                    <input type="file" id="heroImageFileInput" accept="image/*" onchange="handleHeroFileUpload(event)" class="hidden">
+                    <div class="flex items-center justify-center gap-2">
+                      <button type="button" onclick="document.getElementById('heroImageFileInput').click()" class="px-3.5 py-1.5 rounded-lg bg-brand-gold text-white font-bold text-xs hover:bg-brand-goldHover transition flex items-center gap-1.5 shadow-xs">
+                        <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                        <span>ជ្រើសរើសរូបភាពពីកុំព្យូទ័រ / ទូរស័ព្ទ</span>
+                      </button>
+                      <span class="text-[11px] text-gray-400">ឬ</span>
+                    </div>
+                    <p class="text-[10px] text-gray-400">គាំទ្រឯកសាររូបភាព JPG, PNG, WEBP (ទំហំច្បាស់ល្អ 1200x800px)</p>
+                  </div>
+
+                  <!-- Image URL input fallback -->
+                  <div class="mt-2.5">
+                    <span class="text-[11px] text-gray-500 font-semibold block mb-1">ឬបញ្ចូលតំណភ្ជាប់រូបភាព (Image URL)៖</span>
+                    <input type="url" id="editHeroImage" oninput="updateHeroPreview(this.value)" placeholder="https://images.unsplash.com/..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-brand-gold">
+                  </div>
+
+                  <!-- Live Image Preview Thumbnail -->
+                  <div class="mt-3 p-2 bg-gray-100 rounded-xl border border-gray-200 flex items-center gap-3">
+                    <img id="heroPreviewThumb" src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1000&auto=format&fit=crop" alt="Hero Preview" class="w-20 h-14 object-cover rounded-lg border border-white shadow-xs">
+                    <div class="text-[11px] overflow-hidden">
+                      <span class="font-bold text-gray-700 block">ទម្រង់រូបភាពបច្ចុប្បន្ន (Live Preview)</span>
+                      <span class="text-emerald-600 font-medium text-[10px]">● រូបភាពបានភ្ជាប់រួចរាល់ នឹងបង្ហាញលើទំព័រមុខ</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right Column: Promotions & Live Preview Simulation -->
+            <div class="lg:col-span-5 space-y-6">
+              
+              <!-- Card: Promotion Details -->
+              <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-xs space-y-4">
+                <h4 class="text-sm font-bold text-brand-dark flex items-center gap-2">
+                  <i data-lucide="sparkles" class="w-4 h-4 text-rose-500"></i>
+                  <span>ការបញ្ចុះតម្លៃ & ប្រូម៉ូសិន (Promotion)</span>
+                </h4>
+
+                <div>
+                  <label class="block text-xs font-bold text-gray-700 mb-1">អត្ថបទប្រូម៉ូសិនបញ្ចុះតម្លៃ (Promo Discount Badge)</label>
+                  <input type="text" id="editPromoBadge" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-brand-gold">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-gray-700 mb-1">ព័ត៌មានលម្អិតកញ្ចប់បញ្ចុះតម្លៃ</label>
+                  <textarea id="editPromoDetails" rows="2" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-brand-gold"></textarea>
+                </div>
+              </div>
+
+              <!-- Card: Live Preview Box -->
+              <div class="bg-brand-dark text-white p-6 rounded-2xl shadow-xl space-y-4">
+                <span class="text-[10px] uppercase font-bold text-brand-gold tracking-widest block">របៀបដំណើរការ (How it works)</span>
+                <h4 class="text-sm font-bold text-white">ដំណើរការផ្ទាល់លើ Browser ដោយមិនបាច់បិទបើកកូដ</h4>
+                <p class="text-xs text-gray-300 leading-relaxed font-light">
+                  នៅពេលម្ចាស់ហាងកែប្រែទិន្នន័យនៅទីនេះ រួចចុច <b>"រក្សាទុកលើ Website"</b> ប្រព័ន្ធ Web UI នឹងរក្សាទុកចូលក្នុង Browser Storage ភ្លាមៗ។ ពេលអតិថិជនបើក <b>index.html</b> វានឹងទាញយកទិន្នន័យថ្មីដែលបានកែប្រែបង្ហាញភ្លាម!
+                </p>
+
+                <div class="pt-2">
+                  <button type="button" onclick="resetSiteContentToDefault()" class="w-full py-2.5 rounded-xl border border-white/20 text-gray-300 text-xs font-semibold hover:bg-white/10 transition">
+                    🔄 ត្រឡប់ទៅទម្រង់ដើមវិញ (Reset to Default)
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: ADD / EDIT PRODUCT -->
+  <!-- ============================================== -->
+  <div id="productModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+        <h3 id="productModalTitle" class="text-sm font-bold text-brand-dark">បន្ថែម / កែប្រែម៉ូតវាំងនន</h3>
+        <button onclick="closeProductModal()" class="text-gray-400 hover:text-gray-600"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <form id="productForm" onsubmit="saveProduct(event)" class="mt-4 space-y-4 text-xs">
+        <input type="hidden" id="prodEditId" value="">
+        <div>
+          <label class="block font-bold text-gray-700 mb-1">ឈ្មោះម៉ូតវាំងនន *</label>
+          <input type="text" id="prodName" required placeholder="ឧ. វាំងនន ២ ជាន់ Blackout & Sheer" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-gold">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <label class="block font-bold text-gray-700">ប្រភេទ (Category) *</label>
+              <button type="button" onclick="promptAddNewCategory()" class="text-[11px] text-brand-gold hover:text-brand-goldHover font-bold flex items-center gap-0.5">
+                <i data-lucide="plus" class="w-3 h-3"></i> បង្កើតប្រភេទថ្មី
+              </button>
+            </div>
+            <select id="prodCategory" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 focus:outline-none">
+              <!-- Dynamically rendered -->
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">តម្លៃលក់ ($/m² ឬ $/m) *</label>
+            <input type="number" id="prodPrice" required step="0.5" placeholder="18" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 focus:outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-gray-700 mb-1">ពណ៌ក្រណាត់ដែលមាន (សរសេរកាត់ដោយក្បៀស ,)</label>
+          <input type="text" id="prodColors" placeholder="ប្រផេះ, ក្រែម, ស, មាស" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 focus:outline-none">
+        </div>
+
+        <!-- Multi-Images Upload Section (ដាក់រូបបាន ៤ ទៅ ៥ សន្លឹក) -->
+        <div class="p-3.5 bg-gray-50 rounded-2xl border border-gray-200 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <label class="block font-bold text-gray-700 text-xs">
+              រូបភាពគំរូវាំងនន (ដាក់បាន ៤ ទៅ ៥ សន្លឹក) *
+            </label>
+            <span id="prodImageCountBadge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-gold text-white">0/5 សន្លឹក</span>
+          </div>
+
+          <!-- Upload from device Button -->
+          <div class="flex flex-wrap items-center gap-2">
+            <input type="file" id="prodMultipleFilesInput" accept="image/*" multiple onchange="handleProductMultipleImagesUpload(event)" class="hidden">
+            <button type="button" onclick="document.getElementById('prodMultipleFilesInput').click()" class="px-3 py-1.5 rounded-xl bg-brand-dark hover:bg-brand-charcoal text-white text-xs font-bold transition flex items-center gap-1.5 shadow-xs">
+              <i data-lucide="upload" class="w-3.5 h-3.5 text-brand-gold"></i>
+              <span>+ បន្ថែមរូបភាព (File Upload)</span>
+            </button>
+            <span class="text-[11px] text-gray-400">ឬ</span>
+            <!-- Paste Image URL -->
+            <div class="flex-1 flex gap-1 min-w-[180px]">
+              <input type="url" id="prodImgUrlInput" placeholder="Paste Link រូបភាព URL..." class="flex-1 bg-white border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-brand-gold">
+              <button type="button" onclick="addSingleImageUrl()" class="px-2.5 py-1.5 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700 text-xs font-bold transition">ដាក់</button>
+            </div>
+          </div>
+
+          <!-- Thumbnails Preview Container (៤ ទៅ ៥ សន្លឹក) -->
+          <div id="productImagesThumbnailsList" class="grid grid-cols-5 gap-2 pt-1.5 min-h-[64px]">
+            <!-- Injected dynamically -->
+          </div>
+          <p class="text-[10px] text-gray-400">រូបទី ១ នឹងក្លាយជារូបតំណាងចម្បង (Cover Image) នៅលើ Website</p>
+        </div>
+
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeProductModal()" class="px-4 py-2 rounded-xl border border-gray-200 font-semibold text-gray-600 hover:bg-gray-50">បោះបង់</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-brand-gold text-white font-bold hover:bg-brand-goldHover transition">រក្សាទុក</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: MANAGE CATEGORIES (គ្រប់គ្រងប្រភេទវាំងនន) -->
+  <!-- ============================================== -->
+  <div id="categoriesModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+        <h3 class="text-sm font-bold text-brand-dark flex items-center gap-2">
+          <i data-lucide="tag" class="w-4 h-4 text-brand-gold"></i>
+          <span>គ្រប់គ្រងប្រភេទ/Category វាំងនន</span>
+        </h3>
+        <button onclick="closeManageCategoriesModal()" class="text-gray-400 hover:text-gray-600"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <div class="mt-4 space-y-4">
+        <!-- Add New Category Form -->
+        <div class="flex gap-2">
+          <input type="text" id="newCategoryInput" placeholder="ឈ្មោះប្រភេទថ្មី (ឧ. វាំងននបន្ទប់ទឹក)..." class="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-brand-gold">
+          <button type="button" onclick="addNewCategoryFromModal()" class="px-4 py-2 rounded-xl bg-brand-gold hover:bg-brand-goldHover text-white text-xs font-bold transition shrink-0 flex items-center gap-1">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>បន្ថែម</span>
+          </button>
+        </div>
+
+        <!-- Categories List -->
+        <div>
+          <span class="text-xs font-bold text-gray-700 block mb-2">បញ្ជីប្រភេទដែលមានស្រាប់ (ចុចកែប្រែ ឬលុប)៖</span>
+          <div id="categoryItemsList" class="space-y-2 max-h-60 overflow-y-auto custom-scroll pr-1">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-5 pt-3 border-t border-gray-100 flex justify-end">
+        <button type="button" onclick="closeManageCategoriesModal()" class="px-4 py-2 rounded-xl bg-brand-dark text-white text-xs font-semibold hover:bg-brand-charcoal transition">បិទ (Close)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT APPLICATION LOGIC -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // AUTHENTICATION LOGIN STATE
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const user = document.getElementById('adminUser').value;
+      const pass = document.getElementById('adminPass').value;
+
+      if (user === 'admin' && pass === '123456') {
+        sessionStorage.setItem('poipet_admin_auth', 'true');
+        document.getElementById('loginScreen').classList.add('hidden');
+      } else {
+        alert('ឈ្មោះគណនី ឬលេខសម្ងាត់មិនត្រឹមត្រូវ! (លំនាំដើម: admin / 123456)');
+      }
+    }
+
+    function handleAdminLogout() {
+      sessionStorage.removeItem('poipet_admin_auth');
+      document.getElementById('loginScreen').classList.remove('hidden');
+    }
+
+    // Check login state on load
+    if (sessionStorage.getItem('poipet_admin_auth') === 'true') {
+      document.getElementById('loginScreen').classList.add('hidden');
+    }
+
+    // 1. DATA REPOSITORY (STATE WITH LOCALSTORAGE PERSISTENCE)
+    let defaultOrders = [
+      { id: 'ORD-101', name: 'លោក សុខ រតនា', phone: '092 120 128', address: 'បុរីសានហូ, សង្កាត់ប៉ោយប៉ែត', model: 'វាំងនន ២ ជាន់ Blackout', color: 'ប្រផេះក្រម៉ៅ', area: '18.5 m²', total: 333.00, status: 'រង់ចាំវាស់វែង' },
+      { id: 'ORD-102', name: 'អ្នកស្រី ចាន់ លីដា', phone: '010 900 934', address: 'សណ្ឋាគារ ហ្គ្រេនប៉ោយប៉ែត', model: 'វាំងននស្វ័យប្រវត្ត Smart Motor', color: 'សភ្លុក (Ivory)', area: '12 ម៉ែត្រ', total: 336.00, status: 'កំពុងដំឡើង' },
+      { id: 'ORD-103', name: 'លោក វ៉ាន់ ភារម្យ', phone: '071 9838 900', address: 'ផ្ទះវីឡា ជិតរង្វង់មូលប៉ោយប៉ែត', model: 'វាំងនន Ripple Fold (S-Curve)', color: 'សាច់ក្រែម', area: '25.0 m²', total: 550.00, status: 'រួចរាល់' },
+      { id: 'ORD-104', name: 'ក្រុមហ៊ុន ខេមបូឌា ឡូជីស្ទីក', phone: '088 777 4444', address: 'ផ្លូវជាតិលេខ 5, ប៉ោយប៉ែត', model: 'វាំងននបន្ទះបញ្ឈរ Vertical Blinds', color: 'សថ្លា Office', area: '40.0 m²', total: 560.00, status: 'កំពុងកាត់ដេរ' }
+    ];
+
+    let orders = JSON.parse(localStorage.getItem('poipet_orders')) || defaultOrders;
+
+    let defaultProducts = [
+      { id: 1, name: 'វាំងនន ២ ជាន់ Blackout & Sheer', category: 'វាំងននប្រណិត ២ ជាន់', price: 18, colors: ['ប្រផេះក្រម៉ៅ', 'ក្រែមពន្លឺ', 'មាសរលោង'], img: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop' },
+      { id: 2, name: 'វាំងននស្វ័យប្រវត្ត Smart Motor', category: 'វាំងននស្វ័យប្រវត្ត', price: 28, colors: ['សភ្លុក', 'ប្រផេះទំនើប', 'ត្នោតកក់ក្តៅ'], img: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800&auto=format&fit=crop' },
+      { id: 3, name: 'វាំងននរមូល Roller & Zebra Blinds', category: 'វាំងននរមូល Roller', price: 15, colors: ['សសុទ្ធ', 'ប្រផេះស្រាល', 'កាហ្វេ'], img: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800&auto=format&fit=crop' },
+      { id: 4, name: 'វាំងននរលកស្មើ Ripple Fold S-Curve', category: 'វាំងននប្រណិត ២ ជាន់', price: 22, colors: ['សាច់ក្រែម', 'ប្រផេះស៊ីម៉ង់ត៍', 'ខៀវចាស់'], img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=800&auto=format&fit=crop' },
+      { id: 5, name: 'វាំងននបន្ទះបញ្ឈរ Vertical Blinds', category: 'វាំងននការិយាល័យ', price: 14, colors: ['សថ្លា', 'ប្រផេះ', 'ខៀវស្រាល'], img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop' }
+    ];
+
+    let products = JSON.parse(localStorage.getItem('poipet_products')) || defaultProducts;
+
+    let customers = [
+      { name: 'លោក សុខ រតនា', phone: '092 120 128', address: 'បុរីសានហូ, សង្កាត់ប៉ោយប៉ែត', ordersCount: 2, totalSpent: 750, type: 'ផ្ទះវីឡា' },
+      { name: 'អ្នកស្រី ចាន់ លីដា', phone: '010 900 934', address: 'សណ្ឋាគារ ហ្គ្រេនប៉ោយប៉ែត', ordersCount: 4, totalSpent: 2450, type: 'សណ្ឋាគារ' },
+      { name: 'លោក វ៉ាន់ ភារម្យ', phone: '071 9838 900', address: 'ជិតរង្វង់មូលប៉ោយប៉ែត', ordersCount: 1, totalSpent: 550, type: 'ផ្ទះល្វែង' },
+      { name: 'ក្រុមហ៊ុន ខេមបូឌា ឡូជីស្ទីក', phone: '088 777 4444', address: 'ផ្លូវជាតិលេខ 5, ប៉ោយប៉ែត', ordersCount: 3, totalSpent: 1820, type: 'អគារការិយាល័យ' }
+    ];
+
+    let staff = [
+      { name: 'លោក មករា', role: 'ប្រធានជាងដំឡើង', phone: '092 120 128', activeTasks: 2, rating: '5.0 ★' },
+      { name: 'លោក ពិសិដ្ឋ', role: 'ជាងជំនាញដំឡើង & វាស់វែង', phone: '010 900 934', activeTasks: 1, rating: '4.9 ★' },
+      { name: 'អ្នកស្រី គឹមលាង', role: 'ប្រធានជាងកាត់ដេរ', phone: '071 9838 900', activeTasks: 3, rating: '5.0 ★' }
+    ];
+
+    let defaultCategories = [
+      { id: 'luxury', name: 'វាំងននប្រណិត ២ ជាន់' },
+      { id: 'smart', name: 'វាំងននស្វ័យប្រវត្ត Smart' },
+      { id: 'roller', name: 'វាំងននរមូល Roller' },
+      { id: 'office', name: 'វាំងននការិយាល័យ' }
+    ];
+
+    let categories = JSON.parse(localStorage.getItem('poipet_categories')) || defaultCategories;
+
+    function syncStorage() {
+      localStorage.setItem('poipet_orders', JSON.stringify(orders));
+      localStorage.setItem('poipet_products', JSON.stringify(products));
+      localStorage.setItem('poipet_categories', JSON.stringify(categories));
+    }
+
+    // 2. TAB SWITCHING SYSTEM
+    function switchTab(tabId) {
+      const tabs = ['dashboard', 'orders', 'products', 'customers', 'staff', 'reports', 'siteEditor'];
+      tabs.forEach(t => {
+        document.getElementById(`tab-${t}`).classList.add('hidden');
+        document.getElementById(`nav-${t}`).classList.remove('active-nav');
+        document.getElementById(`nav-${t}`).classList.add('text-gray-700');
+      });
+
+      document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+      document.getElementById(`nav-${tabId}`).classList.add('active-nav');
+      document.getElementById(`nav-${tabId}`).classList.remove('text-gray-700');
+
+      // Update Header Title
+      const titles = {
+        dashboard: 'ផ្ទាំងសង្ខេបអាជីវកម្ម',
+        orders: 'គ្រប់គ្រងការកុម្ម៉ង់ & ការដំឡើង',
+        products: 'គ្រប់គ្រងផលិតផល & តម្លៃវាំងនន',
+        customers: 'គ្រប់គ្រងទិន្នន័យអតិថិជន (CRM)',
+        staff: 'គ្រប់គ្រងបុគ្គលិក & ជាងដំឡើង',
+        reports: 'របាយការណ៍ចំណូល និងចំណេញសុទ្ធ',
+        siteEditor: 'កែប្រែមាតិកាគេហទំព័រ (Website Live Editor)'
+      };
+      document.getElementById('topBarTitle').innerText = titles[tabId];
+
+      if (tabId === 'siteEditor') {
+        loadSiteContentToEditor();
+      }
+
+      lucide.createIcons();
+    }
+
+    // 3. RENDER ORDERS TABLE
+    function renderOrdersTable(data = orders) {
+      const tbody = document.getElementById('ordersTableBody');
+      tbody.innerHTML = '';
+
+      data.forEach(order => {
+        let badgeColor = 'bg-gray-100 text-gray-700';
+        if (order.status === 'រង់ចាំវាស់វែង') badgeColor = 'bg-amber-100 text-amber-800';
+        if (order.status === 'កំពុងកាត់ដេរ') badgeColor = 'bg-purple-100 text-purple-800';
+        if (order.status === 'កំពុងដំឡើង') badgeColor = 'bg-blue-100 text-blue-800';
+        if (order.status === 'រួចរាល់') badgeColor = 'bg-emerald-100 text-emerald-800';
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-gray-50/80 transition';
+        tr.innerHTML = `
+          <td class="p-4 font-bold text-brand-dark">${order.id}</td>
+          <td class="p-4">
+            <span class="font-bold text-brand-dark block">${order.name}</span>
+            <span class="text-gray-400 text-[11px]">${order.phone}</span>
+          </td>
+          <td class="p-4 text-gray-600">${order.address}</td>
+          <td class="p-4">
+            <span class="font-medium text-brand-dark block">${order.model}</span>
+            <span class="text-brand-gold text-[11px]">${order.color || 'ពណ៌ធម្មតា'}</span>
+          </td>
+          <td class="p-4 font-medium">${order.area || order.dimensions || '1 បង្អួច'}</td>
+          <td class="p-4 font-bold text-brand-gold">$${(parseFloat(order.total) || 0).toFixed(2)}</td>
+          <td class="p-4">
+            <select onchange="changeOrderStatus('${order.id}', this.value)" class="text-[11px] font-bold rounded-lg px-2 py-1 border-0 ${badgeColor} cursor-pointer focus:outline-none">
+              <option value="រង់ចាំវាស់វែង" ${order.status === 'រង់ចាំវាស់វែង' ? 'selected' : ''}>រង់ចាំវាស់វែង</option>
+              <option value="កំពុងកាត់ដេរ" ${order.status === 'កំពុងកាត់ដេរ' ? 'selected' : ''}>កំពុងកាត់ដេរ</option>
+              <option value="កំពុងដំឡើង" ${order.status === 'កំពុងដំឡើង' ? 'selected' : ''}>កំពុងដំឡើង</option>
+              <option value="រួចរាល់" ${order.status === 'រួចរាល់' ? 'selected' : ''}>រួចរាល់</option>
+            </select>
+          </td>
+          <td class="p-4 text-center">
+            <a href="https://t.me/Samon128?text=សួស្តីលោកអ្នក ${order.name}! ខាង រចនាម៉ូតវាំងនន ប៉ោយប៉ែត សូមជូនដំណឹងពីការកុម្ម៉ង់ ${order.id}" target="_blank" class="p-1.5 rounded-lg text-blue-600 hover:bg-blue-50 inline-block" title="ឆាតទៅអតិថិជន">
+              <i data-lucide="send" class="w-4 h-4"></i>
+            </a>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      lucide.createIcons();
+    }
+
+    function changeOrderStatus(orderId, newStatus) {
+      const order = orders.find(o => o.id === orderId);
+      if (order) {
+        order.status = newStatus;
+        syncStorage();
+        renderOrdersTable();
+      }
+    }
+
+    function filterOrdersTable() {
+      const term = document.getElementById('orderSearchInput').value.toLowerCase();
+      const statusFilter = document.getElementById('orderStatusFilter').value;
+
+      const filtered = orders.filter(o => {
+        const matchesTerm = o.name.toLowerCase().includes(term) || o.phone.includes(term) || o.id.toLowerCase().includes(term);
+        const matchesStatus = statusFilter === 'all' || o.status === statusFilter;
+        return matchesTerm && matchesStatus;
+      });
+      renderOrdersTable(filtered);
+    }
+
+    // 4. RENDER PRODUCTS
+    function renderProducts() {
+      const grid = document.getElementById('adminProductsGrid');
+      grid.innerHTML = '';
+
+      products.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-2xl border border-gray-200/80 overflow-hidden shadow-xs flex flex-col justify-between';
+        card.innerHTML = `
+          <div>
+            <div class="h-44 bg-gray-100 relative overflow-hidden group">
+              <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover">
+              <span class="absolute bottom-2 right-2 px-2.5 py-1 rounded-lg bg-brand-dark text-brand-gold text-xs font-bold">$${p.price} / m²</span>
+              ${p.images && p.images.length > 1 ? `<span class="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/60 text-white text-[10px] font-bold backdrop-blur-xs flex items-center gap-1"><i data-lucide="images" class="w-3 h-3"></i> ${p.images.length} រូប</span>` : ''}
+            </div>
+            <div class="p-5">
+              <span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">${p.category}</span>
+              <h4 class="text-sm font-bold text-brand-dark mt-0.5">${p.name}</h4>
+              <div class="mt-3 text-xs text-gray-500">
+                <span class="font-medium text-gray-700 block mb-1">ពណ៌ស្តុក៖</span>
+                <div class="flex flex-wrap gap-1">
+                  ${p.colors.map(c => `<span class="px-2 py-0.5 rounded-md bg-gray-100 text-[11px] text-gray-600">${c}</span>`).join('')}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 border-t border-gray-100 flex items-center justify-between text-xs">
+            <span class="text-emerald-600 font-semibold">● មានក្នុងស្តុក</span>
+            <div class="flex items-center gap-1.5">
+              <button onclick="openEditProductModal(${p.id})" class="px-3 py-1.5 rounded-lg bg-brand-gold text-white hover:bg-brand-goldHover font-bold flex items-center gap-1">
+                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                <span>កែប្រែ</span>
+              </button>
+              <button onclick="deleteProductItem(${p.id})" class="p-1.5 rounded-lg border border-gray-200 text-rose-500 hover:bg-rose-50 transition" title="លុបម៉ូតនេះ">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    function editProductPrice(id) {
+      const p = products.find(x => x.id === id);
+      const newPrice = prompt(`កែប្រែតម្លៃលក់សម្រាប់ ${p.name} ($/m²):`, p.price);
+      if (newPrice && !isNaN(newPrice)) {
+        p.price = parseFloat(newPrice);
+        syncStorage();
+        renderProducts();
+      }
+    }
+
+    // Category Options & Management Logic
+    function populateCategorySelect() {
+      const select = document.getElementById('prodCategory');
+      if (!select) return;
+      select.innerHTML = '';
+      categories.forEach(cat => {
+        const opt = document.createElement('option');
+        opt.value = cat.name;
+        opt.innerText = cat.name;
+        select.appendChild(opt);
+      });
+    }
+
+    function renderCategoryModalItems() {
+      const list = document.getElementById('categoryItemsList');
+      if (!list) return;
+      list.innerHTML = '';
+      categories.forEach((cat, index) => {
+        const item = document.createElement('div');
+        item.className = 'flex items-center justify-between p-2.5 rounded-xl bg-gray-50 border border-gray-200 text-xs';
+        item.innerHTML = `
+          <span class="font-bold text-brand-dark">${cat.name}</span>
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="editCategoryName(${index})" class="text-brand-gold hover:text-brand-goldHover font-semibold text-[11px]">កែឈ្មោះ</button>
+            ${categories.length > 1 ? `<button type="button" onclick="deleteCategory(${index})" class="text-rose-500 hover:text-rose-700 text-[11px] font-semibold">លុប</button>` : ''}
+          </div>
+        `;
+        list.appendChild(item);
+      });
+      populateCategorySelect();
+    }
+
+    function openManageCategoriesModal() {
+      renderCategoryModalItems();
+      document.getElementById('categoriesModal').classList.remove('hidden');
+    }
+
+    function closeManageCategoriesModal() {
+      document.getElementById('categoriesModal').classList.add('hidden');
+    }
+
+    function addNewCategoryFromModal() {
+      const input = document.getElementById('newCategoryInput');
+      const val = input.value.trim();
+      if (!val) return;
+      categories.push({ id: 'cat_' + Date.now(), name: val });
+      syncStorage();
+      input.value = '';
+      renderCategoryModalItems();
+    }
+
+    function promptAddNewCategory() {
+      const val = prompt('បញ្ចូលឈ្មោះប្រភេទ/Category វាំងននថ្មី:');
+      if (val && val.trim() !== '') {
+        categories.push({ id: 'cat_' + Date.now(), name: val.trim() });
+        syncStorage();
+        populateCategorySelect();
+        document.getElementById('prodCategory').value = val.trim();
+      }
+    }
+
+    function editCategoryName(index) {
+      if (!categories[index]) return;
+      const newName = prompt('កែប្រែឈ្មោះប្រភេទ:', categories[index].name);
+      if (newName && newName.trim() !== '') {
+        categories[index].name = newName.trim();
+        syncStorage();
+        renderCategoryModalItems();
+      }
+    }
+
+    function deleteCategory(index) {
+      if (categories.length > 1 && confirm(`តើអ្នកពិតជាចង់លុបប្រភេទ "${categories[index].name}" មែនទេ?`)) {
+        categories.splice(index, 1);
+        syncStorage();
+        renderCategoryModalItems();
+      }
+    }
+
+    // Multi Images Storage for Current Product Form (៤ ទៅ ៥ សន្លឹក)
+    let currentProductUploadImages = [];
+
+    function renderProductImagesThumbnails() {
+      const container = document.getElementById('productImagesThumbnailsList');
+      const badge = document.getElementById('prodImageCountBadge');
+      if (!container) return;
+      container.innerHTML = '';
+      badge.innerText = `${currentProductUploadImages.length}/5 សន្លឹក`;
+
+      if (currentProductUploadImages.length === 0) {
+        container.innerHTML = `<div class="col-span-5 text-center py-3 text-[11px] text-gray-400 border border-dashed border-gray-200 rounded-xl">មិនទាន់មានរូបភាពនៅឡើយទេ សូមចុចបន្ថែមរូបភាព (អាចដាក់បានដល់ ៥ សន្លឹក)</div>`;
+        return;
+      }
+
+      currentProductUploadImages.forEach((imgSrc, index) => {
+        const thumbDiv = document.createElement('div');
+        thumbDiv.className = 'relative group aspect-square rounded-xl overflow-hidden border-2 ' + (index === 0 ? 'border-brand-gold shadow-sm' : 'border-gray-200');
+        thumbDiv.innerHTML = `
+          <img src="${imgSrc}" class="w-full h-full object-cover">
+          ${index === 0 ? '<span class="absolute bottom-0 inset-x-0 bg-brand-dark/80 text-[8px] text-brand-gold font-bold text-center py-0.5">ចម្បង</span>' : ''}
+          <button type="button" onclick="removeProductUploadedImage(${index})" class="absolute top-1 right-1 w-4 h-4 rounded-full bg-rose-600 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-xs">
+            ✕
+          </button>
+        `;
+        container.appendChild(thumbDiv);
+      });
+    }
+
+    function handleProductMultipleImagesUpload(e) {
+      const files = Array.from(e.target.files);
+      if (!files.length) return;
+
+      const remainingSlots = 5 - currentProductUploadImages.length;
+      if (remainingSlots <= 0) {
+        alert('អ្នកអាចដាក់រូបភាពបានអតិបរមាត្រឹម ៥ សន្លឹកប៉ុណ្ណោះ!');
+        return;
+      }
+
+      const filesToProcess = files.slice(0, remainingSlots);
+      let loadedCount = 0;
+
+      filesToProcess.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          currentProductUploadImages.push(event.target.result);
+          loadedCount++;
+          if (loadedCount === filesToProcess.length) {
+            renderProductImagesThumbnails();
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+      e.target.value = '';
+    }
+
+    function addSingleImageUrl() {
+      const input = document.getElementById('prodImgUrlInput');
+      const url = input.value.trim();
+      if (!url) return;
+      if (currentProductUploadImages.length >= 5) {
+        alert('អ្នកអាចដាក់រូបភាពបានអតិបរមាត្រឹម ៥ សន្លឹកប៉ុណ្ណោះ!');
+        return;
+      }
+      currentProductUploadImages.push(url);
+      input.value = '';
+      renderProductImagesThumbnails();
+    }
+
+    function removeProductUploadedImage(index) {
+      currentProductUploadImages.splice(index, 1);
+      renderProductImagesThumbnails();
+    }
+
+    // Product Modal Helpers
+    function openAddProductModal() { 
+      populateCategorySelect();
+      currentProductUploadImages = [];
+      renderProductImagesThumbnails();
+      document.getElementById('productForm').reset();
+      document.getElementById('prodEditId').value = '';
+      document.getElementById('productModalTitle').innerText = 'បន្ថែមម៉ូតវាំងននថ្មី';
+      document.getElementById('productModal').classList.remove('hidden'); 
+    }
+
+    function openEditProductModal(id) {
+      const p = products.find(x => x.id === id);
+      if (!p) return;
+      populateCategorySelect();
+      document.getElementById('prodEditId').value = p.id;
+      document.getElementById('productModalTitle').innerText = 'កែប្រែម៉ូតវាំងនន៖ ' + p.name;
+      document.getElementById('prodName').value = p.name;
+      document.getElementById('prodCategory').value = p.category;
+      document.getElementById('prodPrice').value = p.price;
+      document.getElementById('prodColors').value = (p.colors || []).join(', ');
+
+      currentProductUploadImages = (p.images && p.images.length > 0) ? [...p.images] : (p.img ? [p.img] : []);
+      renderProductImagesThumbnails();
+      document.getElementById('productModal').classList.remove('hidden');
+    }
+
+    function deleteProductItem(id) {
+      const p = products.find(x => x.id === id);
+      if (!p) return;
+      if (confirm(`តើអ្នកពិតជាចង់លុបម៉ូត "${p.name}" នេះចេញពី Website មែនទេ?`)) {
+        products = products.filter(x => x.id !== id);
+        syncStorage();
+        renderProducts();
+      }
+    }
+
+    function closeProductModal() { document.getElementById('productModal').classList.add('hidden'); }
+    function saveProduct(e) {
+      e.preventDefault();
+      const editId = document.getElementById('prodEditId').value;
+      const name = document.getElementById('prodName').value;
+      const category = document.getElementById('prodCategory').value;
+      const price = parseFloat(document.getElementById('prodPrice').value);
+      const colors = document.getElementById('prodColors').value.split(',').map(s => s.trim()).filter(Boolean);
+      
+      const primaryImg = currentProductUploadImages.length > 0 
+        ? currentProductUploadImages[0] 
+        : 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop';
+
+      const allImages = currentProductUploadImages.length > 0 ? [...currentProductUploadImages] : [primaryImg];
+
+      if (editId) {
+        // Edit existing product
+        const existing = products.find(x => String(x.id) === String(editId));
+        if (existing) {
+          existing.name = name;
+          existing.category = category;
+          existing.price = price;
+          existing.colors = colors.length > 0 ? colors : ['ប្រផេះ', 'ក្រែម', 'ស'];
+          existing.img = primaryImg;
+          existing.images = allImages;
+        }
+      } else {
+        // Add new product
+        products.push({ 
+          id: Date.now(), 
+          name, 
+          category, 
+          price, 
+          colors: colors.length > 0 ? colors : ['ប្រផេះ', 'ក្រែម', 'ស'], 
+          img: primaryImg,
+          images: allImages 
+        });
+      }
+
+      syncStorage();
+      renderProducts();
+      closeProductModal();
+      document.getElementById('productForm').reset();
+    }
+
+    // 5. RENDER CUSTOMERS
+    function renderCustomers(data = customers) {
+      const tbody = document.getElementById('customersTableBody');
+      tbody.innerHTML = '';
+      data.forEach(c => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-gray-50/80 transition';
+        tr.innerHTML = `
+          <td class="p-4 font-bold text-brand-dark">${c.name}</td>
+          <td class="p-4 text-gray-600">${c.phone}</td>
+          <td class="p-4 text-gray-600">${c.address}</td>
+          <td class="p-4 font-bold">${c.ordersCount} ដង</td>
+          <td class="p-4 font-bold text-brand-gold">$${c.totalSpent.toFixed(2)}</td>
+          <td class="p-4"><span class="px-2.5 py-1 rounded-full bg-brand-sand/60 text-brand-dark text-[11px] font-semibold">${c.type}</span></td>
+          <td class="p-4 text-center">
+            <a href="https://t.me/Samon128" target="_blank" class="p-1.5 rounded-lg text-[#0088cc] hover:bg-[#0088cc]/10 inline-block">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+            </a>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      lucide.createIcons();
+    }
+
+    function filterCustomerList() {
+      const q = document.getElementById('custSearchInput').value.toLowerCase();
+      const filtered = customers.filter(c => c.name.toLowerCase().includes(q) || c.phone.includes(q) || c.address.toLowerCase().includes(q));
+      renderCustomers(filtered);
+    }
+
+    // 6. RENDER STAFF
+    function renderStaff() {
+      const container = document.getElementById('staffCardsContainer');
+      container.innerHTML = '';
+      staff.forEach(s => {
+        const div = document.createElement('div');
+        div.className = 'bg-white p-5 rounded-2xl border border-gray-200/80 shadow-xs flex items-center justify-between';
+        div.innerHTML = `
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-brand-sand text-brand-gold flex items-center justify-center font-bold text-sm">
+              ${s.name.substring(0, 2)}
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-brand-dark">${s.name}</h4>
+              <span class="text-xs text-brand-muted block">${s.role}</span>
+              <span class="text-[11px] text-gray-400 block">${s.phone}</span>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold block mb-1">${s.activeTasks} ការងារសកម្ម</span>
+            <span class="text-xs text-amber-500 font-bold">${s.rating}</span>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+      lucide.createIcons();
+    }
+
+    function openAddStaffModal() {
+      const name = prompt('បញ្ចូលឈ្មោះបុគ្គលិក / ជាងថ្មី:');
+      const role = prompt('បញ្ចូលតួនាទី (ឧ. ជាងដំឡើង / ជាងកាត់ដេរ):');
+      const phone = prompt('បញ្ចូលលេខទូរស័ព្ទ:');
+      if (name && role) {
+        staff.push({ name, role, phone: phone || '092 120 128', activeTasks: 0, rating: '5.0 ★' });
+        renderStaff();
+      }
+    }
+
+    // 7. CHARTS SETUP (CHART.JS)
+    function initCharts() {
+      // Weekly Revenue Chart
+      const ctxRev = document.getElementById('weeklyRevenueChart').getContext('2d');
+      new Chart(ctxRev, {
+        type: 'line',
+        data: {
+          labels: ['ច័ន្ទ', 'អង្គារ', 'ពុធ', 'ព្រហស្បតិ៍', 'សុក្រ', 'សៅរ៍', 'អាទិត្យ'],
+          datasets: [{
+            label: 'ចំណូល ($)',
+            data: [420, 680, 510, 890, 720, 1450, 1150],
+            borderColor: '#C5A059',
+            backgroundColor: 'rgba(197, 160, 89, 0.1)',
+            fill: true,
+            tension: 0.35,
+            borderWidth: 2.5
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, grid: { color: '#F1F1F1' } },
+            x: { grid: { display: false } }
+          }
+        }
+      });
+
+      // Monthly Profit Chart
+      const ctxProfit = document.getElementById('monthlyProfitChart').getContext('2d');
+      new Chart(ctxProfit, {
+        type: 'bar',
+        data: {
+          labels: ['មករា', 'កុម្ភៈ', 'មីនា', 'មេសា', 'ឧសភា', 'មិថុនា'],
+          datasets: [
+            { label: 'ចំណូលសរុប', data: [3200, 3900, 4800, 5200, 6100, 5820], backgroundColor: '#1C1917', borderRadius: 6 },
+            { label: 'ចំណេញសុទ្ធ', data: [1300, 1600, 2050, 2180, 2600, 2380], backgroundColor: '#C5A059', borderRadius: 6 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { beginAtZero: true, grid: { color: '#F1F1F1' } },
+            x: { grid: { display: false } }
+          }
+        }
+      });
+
+      // Expense Breakdown Pie Chart
+      const ctxPie = document.getElementById('expensePieChart').getContext('2d');
+      new Chart(ctxPie, {
+        type: 'doughnut',
+        data: {
+          labels: ['ថ្លៃក្រណាត់នាំចូល', 'គ្រឿងបន្លាស់/រ៉ៃ', 'ឈ្នួលជាងដំឡើង', 'ដឹកជញ្ជូន & ផ្សេងៗ'],
+          datasets: [{
+            data: [55, 20, 18, 7],
+            backgroundColor: ['#1C1917', '#C5A059', '#78716C', '#D8C3A5'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }
+        }
+      });
+    }
+
+    // Print Report
+    function printReport() {
+      window.print();
+    }
+
+    // 8. CMS SITE CONTENT LIVE EDITOR LOGIC
+    const defaultSiteSettings = {
+      storeTitle: "រចនាម៉ូតវាំងនន ប៉ោយប៉ែត",
+      announcementText: "ប្រូម៉ូសិនពិសេសរដូវកាលថ្មី ចុះតម្លៃរហូតដល់ ២៥% សម្រាប់ក្រុងប៉ោយប៉ែត",
+      storePhones: "092 120 128 / 010 900 934 / 071 9838 900",
+      storeTelegram: "Samon128",
+      storeAddress: "ក្រុងប៉ោយប៉ែត, ខេត្តបន្ទាយមានជ័យ (សេវាវាស់វែងដល់ទីកន្លែងឥតគិតថ្លៃ)",
+      heroHeading: "វាំងននប្រណិត",
+      heroHighlight: "រចនាតាមទំហំគេហដ្ឋាន",
+      heroDesc: "សេវាកម្មកាត់ដេរ និងដំឡើងវាំងននទាន់សម័យ សាច់ក្រណាត់ប្រណិត ការពារកម្ដៅថ្ងៃ 100% ផ្ដល់ផាសុកភាព និងលើកសម្រស់គេហដ្ឋាន វីឡា ខុនដូ និងការិយាល័យ។",
+      heroImage: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1000&auto=format&fit=crop",
+      promoBadge: "ចុះ -20% សម្រាប់កញ្ចប់ផ្ទះវីឡា & ផ្ទះល្វែង",
+      promoDetails: "កាត់ដេរវាំងននគ្រប់បន្ទប់ (ចាប់ពី ៥ បង្អួចឡើងទៅ) ទទួលបានការបញ្ចុះតម្លៃ ២០% ភ្លាមៗ និង Free ដំឡើង!"
+    };
+
+    // Multi Locations Manager (សម្រាប់ Admin បន្ថែមទីតាំង ២ ឬ ៣ និង Paste Link Google Maps)
+    let siteLocations = [
+      { title: "សាខាទី ១ (ក្រុងប៉ោយប៉ែត)", address: "ក្រុងប៉ោយប៉ែត, ខេត្តបន្ទាយមានជ័យ (សេវាវាស់វែងដល់ទីកន្លែងឥតគិតថ្លៃ)", mapUrl: "https://maps.google.com/?q=Poipet" },
+      { title: "សាខាទី ២ (ជិតរង្វង់មូល)", address: "ផ្លូវជាតិលេខ 5, ជិតរង្វង់មូលប៉ោយប៉ែត", mapUrl: "" }
+    ];
+
+    function renderLocationFields() {
+      const container = document.getElementById('locationsListContainer');
+      if (!container) return;
+      container.innerHTML = '';
+
+      siteLocations.forEach((loc, index) => {
+        const row = document.createElement('div');
+        row.className = 'p-3 rounded-xl bg-gray-50 border border-gray-200 relative space-y-2';
+        row.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-brand-dark flex items-center gap-1">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold"></i>
+              <span>ទីតាំងទី ${index + 1}</span>
+            </span>
+            ${siteLocations.length > 1 ? `<button type="button" onclick="removeLocationField(${index})" class="text-rose-500 hover:text-rose-700 text-xs font-bold" title="លុបទីតាំងនេះ">លុប</button>` : ''}
+          </div>
+          <div>
+            <input type="text" value="${loc.title || ''}" placeholder="ឈ្មោះទីតាំង/សាខា (ឧ. សាខាទី ១ ប៉ោយប៉ែត)" oninput="updateLocationData(${index}, 'title', this.value)" class="w-full bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-brand-gold mb-1.5">
+            <input type="text" value="${loc.address || ''}" placeholder="អាសយដ្ឋានលម្អិត (ឧ. ផ្ទះលេខ..., សង្កាត់...)" oninput="updateLocationData(${index}, 'address', this.value)" class="w-full bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-brand-gold mb-1.5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <div class="relative">
+                <input type="url" value="${loc.mapUrl || ''}" placeholder="Paste Link Google Maps (https://maps.google.com/...)" oninput="updateLocationData(${index}, 'mapUrl', this.value)" class="w-full bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-brand-gold pl-7">
+                <i data-lucide="link" class="w-3.5 h-3.5 text-gray-400 absolute left-2 top-2"></i>
+              </div>
+              <div class="relative">
+                <input type="url" value="${loc.embedUrl || ''}" placeholder="Link Embed ផែនទី (បើមាន)" oninput="updateLocationData(${index}, 'embedUrl', this.value)" class="w-full bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-brand-gold pl-7">
+                <i data-lucide="map" class="w-3.5 h-3.5 text-gray-400 absolute left-2 top-2"></i>
+              </div>
+            </div>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+      lucide.createIcons();
+    }
+
+    function addNewLocationField() {
+      siteLocations.push({ title: `សាខាទី ${siteLocations.length + 1}`, address: "", mapUrl: "" });
+      renderLocationFields();
+    }
+
+    function removeLocationField(index) {
+      if (siteLocations.length > 1) {
+        siteLocations.splice(index, 1);
+        renderLocationFields();
+      }
+    }
+
+    function updateLocationData(index, field, value) {
+      if (siteLocations[index]) {
+        siteLocations[index][field] = value;
+      }
+    }
+
+    function loadSiteContentToEditor() {
+      const settings = JSON.parse(localStorage.getItem('poipet_site_settings')) || defaultSiteSettings;
+      document.getElementById('editStoreTitle').value = settings.storeTitle || '';
+      document.getElementById('editAnnouncementText').value = settings.announcementText || '';
+      document.getElementById('editStorePhones').value = settings.storePhones || '';
+      document.getElementById('editStoreTelegram').value = settings.storeTelegram || '';
+      
+      if (settings.locations && Array.isArray(settings.locations) && settings.locations.length > 0) {
+        siteLocations = settings.locations;
+      }
+      renderLocationFields();
+
+      document.getElementById('editHeroHeading').value = settings.heroHeading || '';
+      document.getElementById('editHeroHighlight').value = settings.heroHighlight || '';
+      document.getElementById('editHeroDesc').value = settings.heroDesc || '';
+      document.getElementById('editHeroImage').value = settings.heroImage || '';
+      if (document.getElementById('heroPreviewThumb') && settings.heroImage) {
+        document.getElementById('heroPreviewThumb').src = settings.heroImage;
+      }
+      document.getElementById('editPromoBadge').value = settings.promoBadge || '';
+      document.getElementById('editPromoDetails').value = settings.promoDetails || '';
+    }
+
+    // Handle Image Upload for Hero Banner
+    function handleHeroFileUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const base64Img = event.target.result;
+        document.getElementById('editHeroImage').value = base64Img;
+        updateHeroPreview(base64Img);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function updateHeroPreview(src) {
+      if (src && document.getElementById('heroPreviewThumb')) {
+        document.getElementById('heroPreviewThumb').src = src;
+      }
+    }
+
+    function saveSiteContent() {
+      const newSettings = {
+        storeTitle: document.getElementById('editStoreTitle').value,
+        announcementText: document.getElementById('editAnnouncementText').value,
+        storePhones: document.getElementById('editStorePhones').value,
+        storeTelegram: document.getElementById('editStoreTelegram').value,
+        locations: siteLocations,
+        heroHeading: document.getElementById('editHeroHeading').value,
+        heroHighlight: document.getElementById('editHeroHighlight').value,
+        heroDesc: document.getElementById('editHeroDesc').value,
+        heroImage: document.getElementById('editHeroImage').value,
+        promoBadge: document.getElementById('editPromoBadge').value,
+        promoDetails: document.getElementById('editPromoDetails').value
+      };
+
+      localStorage.setItem('poipet_site_settings', JSON.stringify(newSettings));
+      const alertBox = document.getElementById('siteSaveAlert');
+      alertBox.classList.remove('hidden');
+      setTimeout(() => alertBox.classList.add('hidden'), 5000);
+    }
+
+    function resetSiteContentToDefault() {
+      if (confirm('តើអ្នកពិតជាចង់កំណត់មាតិកាគេហទំព័រត្រឡប់ទៅទម្រង់ដើមវិញមែនទេ?')) {
+        localStorage.removeItem('poipet_site_settings');
+        loadSiteContentToEditor();
+        alert('បានកំណត់ត្រឡប់ទៅទម្រង់ដើមរួចរាល់!');
+      }
+    }
+
+    // Toggle Sidebar on Mobile
+    function toggleSidebar() {
+      const s = document.getElementById('sidebar');
+      s.classList.toggle('-ml-64');
+    }
+
+    // Run Initializations
+    window.addEventListener('DOMContentLoaded', () => {
+      populateCategorySelect();
+      renderOrdersTable();
+      renderProducts();
+      renderCustomers();
+      renderStaff();
+      initCharts();
+    });
+  </script>
+</body>
+</html>
